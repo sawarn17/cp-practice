@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module Competive_Programming {
-}
