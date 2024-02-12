@@ -9,7 +9,14 @@
 public class Competive {
 	
 	public static void main(String [] args) {
-		System.out.print("Hi this is setup");
+		Long l1 = 100L;
+		Long l2 = 100L;
+		try {
+			System.out.println(l1 == l2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
