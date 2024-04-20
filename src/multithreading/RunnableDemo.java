@@ -14,5 +14,9 @@ public class RunnableDemo {
         //here we need to pass the Implementation class of runable
         Thread run = new Thread(new RunnableEx());
         run.start();
+
+        //with runnable instance
+        Runnable runnable = new RunnableEx();
+        runnable.run();
     }
 }
