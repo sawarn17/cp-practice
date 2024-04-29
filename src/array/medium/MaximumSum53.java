@@ -1,6 +1,6 @@
 package array.medium;
 
-public class MaximumSubArrayKandleAlgolrithem53 {
+public class MaximumSum53 {
 
     public static int getMaximumSubArray(int [] arr){
         int sum=0, max=arr[0];
