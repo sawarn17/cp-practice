@@ -75,9 +75,9 @@ public class RearrangeElement2149 {
 
     public static void main(String[] args) {
         int[] arr = { 3, 1, -2, -5, 2, -4 };
-        // rearrangeArray(arr);
+         rearrangeArray(arr);
         // rearrangeArrayv2(arr);
-        rearrangeArrayv3(arr);
+        //rearrangeArrayv3(arr);
         for (int i : arr) {
             System.out.println(i);
         }
