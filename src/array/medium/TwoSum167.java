@@ -1,4 +1,4 @@
-package arrayimpl;
+package array.medium;
 //this is two sum
 public class TwoSum167 {
 
