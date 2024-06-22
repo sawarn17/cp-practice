@@ -1,5 +1,6 @@
 package multithreading;
 
+//this is used to create the threads in java
 class ThreadEx extends Thread{
     
     public void run(){
