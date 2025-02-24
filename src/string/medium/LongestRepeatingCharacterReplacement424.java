@@ -38,8 +38,6 @@ public class LongestRepeatingCharacterReplacement424 {
             }
 
             maxLength = Math.max(maxLength, right - left + 1);
-
-            // Early exit condition
             if (s.length() - left <= maxLength) {
                 break;
             }
