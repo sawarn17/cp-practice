@@ -9,21 +9,21 @@ import java.util.Map;
 public class Anagram48 {
 
     // Array of first 26 prime numbers corresponding to each alphabet
-    private static final int[] PRIMES = {
-            2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37,
-            41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,
-            89, 97, 101
-    };
+    // private static final int[] PRIMES = {
+    //         2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37,
+    //         41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,
+    //         89, 97, 101
+    // };
 
-    private static long getPrimeProduct(String str) {
-        long product = 1;
+    // private static long getPrimeProduct(String str) {
+    //     long product = 1;
         
-        for (char ch : str.toCharArray()) {
-            product *= PRIMES[ch - 'a'];
-        }
+    //     for (char ch : str.toCharArray()) {
+    //         product *= PRIMES[ch - 'a'];
+    //     }
         
-        return product;
-    }
+    //     return product;
+    // }
 
     public static String genrateString(String str) {
         StringBuilder sb = new StringBuilder();
