@@ -1,6 +1,6 @@
 package multithreading;
 
-class RunnableEx implements Runnable{
+class RunnableEx implements Runnable {
 
     @Override
     public void run() {
@@ -9,7 +9,7 @@ class RunnableEx implements Runnable{
     
 }
 
-public class RunnableDemo {
+public class RunnableDemo2 {
     public static void main(String[] args) {
         //here we need to pass the Implementation class of runable
         Thread run = new Thread(new RunnableEx());

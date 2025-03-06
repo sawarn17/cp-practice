@@ -11,7 +11,8 @@ class RunnableWithFuture implements Runnable {
     }
 }
 
-public class RunableWithExecutors {
+public class RunableWithExecutors3 {
+    
     public static void main(String[] args) {
         // creating thread pool exe with 3 threads
         ExecutorService executor = Executors.newFixedThreadPool(3);
