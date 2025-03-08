@@ -10,6 +10,6 @@ public class FutureDemo {
 
     public static void main(String[] args) {
         Executor executor = Executors.newSingleThreadExecutor();
-         Future<Long> futureResult = ((ExecutorService) executor).submit(new FactorialCallable(10));
+        Future<Long> futureResult = ((ExecutorService) executor).submit(new FactorialCallable(10));
     }
 }
