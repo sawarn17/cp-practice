@@ -1,4 +1,4 @@
-package java8.streamdemo.streamex;
+package java8.streamdemo;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
