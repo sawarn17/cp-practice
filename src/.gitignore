@@ -1,3 +1,0 @@
-# Ignore all compiled class files
-*.classgit rm --cached -r **/*.class
-bin/
