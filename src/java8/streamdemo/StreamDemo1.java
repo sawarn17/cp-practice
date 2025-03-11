@@ -2,6 +2,8 @@ package java8.streamdemo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -52,19 +54,42 @@ public class StreamDemo1 {
      * 
      */
 
+    // empty stream creation
+    // We often use the empty() method upon creation to avoid returning null for
+    // streams with no element
+    Stream<String> streamEmpty = Stream.empty();
 
-    private static Stream<Integer> streamOfDemo(){
-        return Stream.of(1,2,3,4,5,6,7,8, 9, 10);
+    // creation of stream of collections in java
+    private static Stream<String> getStreamOfCollections() {
+        Collection<String> collection = Arrays.asList("a", "b", "c");
+        Stream<String> streamOfCollection = collection.stream();
+        return streamOfCollection;
     }
 
-    private static void sortingDemo(){
-        //perform sorting on reverse order
+    // stream builder creating of stream
+    private static void streamBuilder() {
+        Stream<String> streamBuilder = Stream.<String>builder().add("a").add("b").add("c").build();
+        System.out.println(streamBuilder);
+    }
+
+    //The code above creates a sequence of ten strings with the value a.
+    private static void streamSecquneceCreate() {
+        Stream<String> streamGenerated = Stream.generate(() -> "a").limit(10);
+        System.out.println("THE OUT PUT OF STREAM GENRATE ARE "+streamGenerated);
+    }
+
+    private static Stream<Integer> streamOfDemo() {
+        return Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    }
+
+    private static void sortingDemo() {
+        // perform sorting on reverse order
         // distinct is used to removed the duplicates from the stream
         List<Integer> reversedInt = streamOfDemo().distinct().sorted(Comparator.reverseOrder()).toList();
         System.out.println("THE REVERSESED DATA IS " + reversedInt);
     }
 
-    private static void demoOfFindAny(){
+    private static void demoOfFindAny() {
         // find any returns the Optional<T> value
 
         Optional<Integer> findAnyValue = streamOfDemo().filter(data -> data % 2 == 0).findAny();
@@ -72,39 +97,41 @@ public class StreamDemo1 {
         System.out.println(findAnyValue);
     }
 
-    private static void demoOfAnyMatch(){
-        // it return true value accept predicate on the baisis of predicate return boolean value
+    private static void demoOfAnyMatch() {
+        // it return true value accept predicate on the baisis of predicate return
+        // boolean value
 
-        boolean isMatched = streamOfDemo().anyMatch(data -> data %3 == 0);
+        boolean isMatched = streamOfDemo().anyMatch(data -> data % 3 == 0);
         System.out.println(isMatched);
     }
 
-    
-    //use for just like looping and using some lambda operation on it return type is void
+    // use for just like looping and using some lambda operation on it return type
+    // is void
     // just a diff :: here we can use lambda operators
-    private static void demoOfForEachMethod(List<Integer> details){
+    private static void demoOfForEachMethod(List<Integer> details) {
         details.stream().forEach(System.out::println);
         details.stream().forEach(System.out::println);
-    } 
+    }
 
     private static List<Integer> getAllEvenNumberUseingFilter(List<Integer> details) {
         return details.stream().filter(data -> data % 2 == 0).collect(Collectors.toList());
     }
 
-    private static void filterDataOfEvenIndex(){
+    private static void filterDataOfEvenIndex() {
         List<String> testData = Arrays.asList("EVEN", "ODD", "EVEN", "ODDD", "Even", "ODDD");
 
-        // create an AtomicInteger 
-        // When we want to process the data in the predicates then predicates can expect final variable
+        // create an AtomicInteger
+        // When we want to process the data in the predicates then predicates can expect
+        // final variable
         // so that we need to create a atomicInteger which treated like a final varibale
-        AtomicInteger atomicInteger = new AtomicInteger(0); 
+        AtomicInteger atomicInteger = new AtomicInteger(0);
 
         // here getIncrement increses value by one
-        testData.stream().filter(data -> atomicInteger.getAndIncrement() %2 ==0).forEach(System.out::println);
+        testData.stream().filter(data -> atomicInteger.getAndIncrement() % 2 == 0).forEach(System.out::println);
     }
 
     private static List<Integer> getALlEvenNumberUsingReduedMethod(List<Integer> details) {
-        //Here i am creating the new arraylist as a first args and now for seconds args
+        // Here i am creating the new arraylist as a first args and now for seconds args
         // we are performingg two lambda operations
         return details.stream().reduce(new ArrayList<Integer>(),
                 (a, b) -> {
@@ -122,7 +149,7 @@ public class StreamDemo1 {
         List<Integer> testData = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         System.out.println("THE EVEN NUMBER ARE " + getAllEvenNumberUseingFilter(testData));
-        System.out.println("THE EVEN NUMBER USING REDUCED METHOD"+getALlEvenNumberUsingReduedMethod(testData));
+        System.out.println("THE EVEN NUMBER USING REDUCED METHOD" + getALlEvenNumberUsingReduedMethod(testData));
         System.out.println("\n\tTHE EVEN INDEX STRINGS ARE \n");
         filterDataOfEvenIndex();
 
@@ -130,5 +157,8 @@ public class StreamDemo1 {
         sortingDemo();
         demoOfFindAny();
         demoOfAnyMatch();
+        getStreamOfCollections();
+        streamBuilder();
+        streamSecquneceCreate();
     }
 }
