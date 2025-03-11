@@ -1,4 +1,4 @@
-package inheritance.interfacedemo;
+package interfacedemo;
 /*
  * an interface is a reference type,
  *  similar to a class, that can contain only constants, method signatures, 

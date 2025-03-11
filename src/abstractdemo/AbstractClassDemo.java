@@ -1,4 +1,4 @@
-package inheritance.abstractdemo;
+package abstractdemo;
 /*
  * declared with abstract keyword
  * may have abstract method or not 
