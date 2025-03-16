@@ -38,9 +38,10 @@ class Three extends Two{
     }
 }
 
-class Four extends Three{
+final class Four extends Three{
     private int temp=4;
 
+    //If we make the consurtor as a private then we can't create object from outside of that class
     private Four(){
         System.out.println("CLASS Three");
     }
@@ -66,6 +67,34 @@ class Four extends Three{
 //         return this.temp;
 //     }
 // }
+
+
+final class Six extends Three{
+    private int temp=6;
+
+    public Six(){
+        System.out.println("CLASS Six");
+    }
+
+    public int getTemp(){
+        return this.temp;
+    }
+}
+
+////** We can't extends the final class
+/// ERROR IS : The type Seven cannot subclass the final class Six
+// class Seven extends Six{
+//     private int temp=7;
+
+//     public Seven(){
+//         System.out.println("CLASS Seven");
+//     }
+
+//     public int getTemp(){
+//         return this.temp;
+//     }
+// }
+
 //-------------------------------------------------------------------------------------------------------
 
 public class InheritanceDemo1 {
@@ -96,6 +125,17 @@ public class InheritanceDemo1 {
         //** 
         //Three thObject = new Two();
         // Type Mismatch error ** Child can't hold the refrence of parent
+
+        //
+        Six four = new Six();
+        System.out.println("THE OBJCT IN FOUR CLASS ARE "+ four.getTemp());
+        /*
+         * CLASS ONE
+           CLASS TWO
+           CLASS Three
+           CLASS Six
+           THE OBJCT IN FOUR CLASS ARE 6
+         */
         
     }
     
