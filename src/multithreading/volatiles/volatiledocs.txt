@@ -1,0 +1,18 @@
+
+
+2. Shared Multiprocessor Architecture
+   - Processors are responsible for executing program instructions. 
+        Therefore, they must retrieve the program instructions and required data from RAM.
+   - As CPUs can carry many instructions per second, fetching from RAM isn’t ideal for them. To improve this situation, 
+        processors use tricks like Out of Order Execution, Branch Prediction, Speculative Execution, and Caching.
+   
+Computer Core Memory Works like:
+
+            Core 1. L1 Cache(Data Cahe + instructions cache)
+                    L2 Cache
+                    L3 Cache
+
+                    Bus 
+                    RAM
+
+---------------------------------------------------------------------------------------------------------------------
