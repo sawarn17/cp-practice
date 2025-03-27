@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class StreamDemo1 {
@@ -72,10 +74,10 @@ public class StreamDemo1 {
         System.out.println(streamBuilder);
     }
 
-    //The code above creates a sequence of ten strings with the value a.
+    // The code above creates a sequence of ten strings with the value a.
     private static void streamSecquneceCreate() {
         Stream<String> streamGenerated = Stream.generate(() -> "a").limit(10);
-        System.out.println("THE OUT PUT OF STREAM GENRATE ARE "+streamGenerated);
+        System.out.println("THE OUT PUT OF STREAM GENRATE ARE " + streamGenerated);
     }
 
     private static Stream<Integer> streamOfDemo() {
@@ -143,6 +145,16 @@ public class StreamDemo1 {
                     a.addAll(b);
                     return a;
                 });
+    }
+
+    public static void createStreamOfPrimitive() {
+        //Here first in inclusive start range and second is exclusive 
+        IntStream intStream = IntStream.range(1, 3);
+        // Here there are minor diffrence is first and second both ar inclusive
+        LongStream longStream = LongStream.rangeClosed(1, 3);
+
+        //stream of characters
+        IntStream streamOfChars = "abc".chars();
     }
 
     public static void main(String[] args) {
