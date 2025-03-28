@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CollectorsDemo1 {
 
@@ -50,7 +51,11 @@ public class CollectorsDemo1 {
         Map<String, Integer> unmodifiedableMap = givenList.stream().collect(Collectors.toUnmodifiableMap(Function.identity(), String::length)); 
     }
 
-    // Collectors.collectingAndThen()
+    
+    public static void summingOfStringLength(){
+       int sumOfFirstFiveNumber = Stream.of(1,2,3,4,5).collect(Collectors.summingInt(Integer::valueOf));
+       System.out.println(sumOfFirstFiveNumber);
+    }
 
 
     //The Joining() collector can be used for joining Stream<String> elements.
@@ -79,6 +84,9 @@ public class CollectorsDemo1 {
         List<String> givenList = Arrays.asList("a", "bb", "ccc", "dd");
 
         colletorsJoining(givenList);
+
+        System.out.println("------------------------------------------------------------");
+        summingOfStringLength();
 
     }
 }
