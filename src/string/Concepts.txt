@@ -1,0 +1,8 @@
+
+1. Valid Palindrom : All charcater must be matches : use Two pointer Concepts start from index 0 and length-1 then 
+
+2. Anagram String :
+    Take an int array of length 26 for first string start traversing(minus 'a') increses count of indecies
+    Again start traversing on second array and minus values
+
+    Again take a loop if any indicies have value !=0 then return false.
