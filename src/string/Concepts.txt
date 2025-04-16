@@ -6,3 +6,7 @@
     Again start traversing on second array and minus values
 
     Again take a loop if any indicies have value !=0 then return false.
+
+3. Remove Consecutive Strings:
+    Comparing i with i+1 ie j and if charcater not matches then aadd in string and i=j and so on rest of them j++;
+
