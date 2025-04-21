@@ -1,0 +1,34 @@
+
+1.1 Final Applied on Class Level Behavior:
+
+- When we want to set the limit on extensibility of a class then we are using final keyword.
+    Final Class can't be inherited.
+    eg: String class
+
+  In genrally every class can extends Objects class of the java.
+
+  ** Note that the final keyword in a class declaration doesn’t mean that the objects of this class are immutable. 
+     We can change the fields of that final object class freely:
+
+
+
+1.2 Final Applied on Method level Behavior
+- The method marked as final could not be ovverriden.
+
+
+
+1.3 Final Variable: 
+    When we make a final Variable then values can't be reassigned.
+    Once Value can be assigned then it can't be reassigned.
+
+1.4 Final Refence Variable also not be immutable.
+
+
+Notes : 
+- Final feilds sould be a constants, or write once feilds.
+- It is not a part of Objects so that it can't be takes parts in serilization
+- It just used like a constant Variable.
+- As per naming convention it should be in UPPER Case Letter followed by UNDERSCORE _
+    Eg : public final int AGE_CONSTANT =18;
+- 
+

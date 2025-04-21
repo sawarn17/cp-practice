@@ -4,11 +4,16 @@
     2. Heap Memory
 
  1. Stack Memory:
-    Stack Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values that are specific to a method and references to objects referred from the method that are in a heap.
+    Stack Memory in Java is used for static memory allocation and the execution of a thread. 
+    It contains primitive values that are specific to a method and references to objects referred 
+    from the method that are in a heap.
 
-    Access to this memory is in Last-In-First-Out (LIFO) order. Whenever we call a new method, a new block is created on top of the stack which contains values specific to that method, like primitive variables and references to objects.
+    Access to this memory is in Last-In-First-Out (LIFO) order.
+    Whenever we call a new method, a new block is created on top of the stack which contains values 
+    specific to that method, like primitive variables and references to objects.
 
-    When the method finishes execution, its corresponding stack frame is flushed, the flow goes back to the calling method, and space becomes available for the next method.
+    When the method finishes execution, its corresponding stack frame is flushed, 
+    the flow goes back to the calling method, and space becomes available for the next method.
 
 
     Features :
