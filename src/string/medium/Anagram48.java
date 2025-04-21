@@ -40,10 +40,9 @@ public class Anagram48 {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
+    public void getAllAnagarms(String [] st){
         Map<String, List<String>> result = new HashMap<>();
-        String st[] = { "eat", "tea", "tan", "ate", "nat", "bat" };
-
+        
         for (String s : st) {
             String temp = genrateString(s);
 
@@ -54,5 +53,26 @@ public class Anagram48 {
             result.get(temp).add(s);
         }
         System.out.println(result.values());
+    }
+
+    public static void getAllAnagarmsV2(String [] st){
+        Map<String, List<String>> map = new HashMap<>();
+
+        for(String s : st){
+           char temp [] = s.toCharArray();
+           Arrays.sort(temp);
+           String temp1 = new String(temp);
+
+           map.computeIfAbsent(temp1, k -> new ArrayList<>()).add(s);
+
+        }
+
+        System.out.println(map.values());
+
+    }
+
+    public static void main(String[] args) {
+        String st[] = { "eat", "tea", "tan", "ate", "nat", "bat" };
+        getAllAnagarmsV2(st);
     }
 }
