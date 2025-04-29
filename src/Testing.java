@@ -4,24 +4,18 @@ import java.util.List;
 
 public class Testing {
 
-    public static int lengthOfLongestSubstring(String s) {
-        int max=0,left=0, right=0;
-        ArrayList<Character> ch = new ArrayList<>();
-        while(right < s.length()){
-         if(!ch.contains(s.charAt(right))){
-             ch.add(s.charAt(right));
-             right++;
-             max = Math.max(max, ch.size());
-         }else{
-             ch.remove(Character.valueOf(s.charAt(left)));
-             left++;
-         }
+    public static String reverseWords(String s) {
+        char temp [] = s.toCharArray();
+        int i=0, left=0, right=0;
+
+        while(i<temp.length){
+            
         }
-        return max;
-     }
+        return s;
+    }
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
-        System.out.println(lengthOfLongestSubstring(s));
+        String s = "the sky is blue";
+        reverseWords(s);
     }
 }
