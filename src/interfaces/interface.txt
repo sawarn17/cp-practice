@@ -1,0 +1,65 @@
+
+
+Interface is used to achive abstraction in java. It is blueprint of implemented class : 
+
+    - By default, variables in an interface are public, static, and final.
+    - The interface in Java is a mechanism to achieve abstraction.
+    - It is used to achieve abstraction and multiple inheritance in Java.
+    - It supports loose coupling (classes depend on behavior, not implementation).
+    - In other words, interfaces primarily define methods that other classes must implement.
+    - An interface in Java defines a set of behaviours that a class can implement, 
+        usually representing an IS-A relationship,
+        but not always in every scenario.
+    - Private methods can only be called inside default or static methods in the interface,
+        not by implementing classes.
+    - Static methods are also accessible via the3interface itself not through objects.
+
+
+Some More context point about interface :
+    - We can't create object of interface class.
+    - Variables are public static final (constants only).
+    - In an interface, methods are abstract by default.
+    - Supports multiple inheritance.
+    - No constructor are allowed.
+    - In an interface, all members are public by default.
+    - Default and static method comes in java 8, and form java 9 ownwards it also supports Private method.
+    -** Can have main() (since JDK 8, as static methods are allowed).
+
+
+Behavior of Private Method in java :
+    - Interface can now include private methods.(JAVA 9)
+    - Private methods are defined within the interface but it cannot be accessed by the implementing classes.
+    - Private methods cannot be overridden by implementing classes as they are not inherited.
+
+Static Method in java :
+    - Interfaces can now include static methods.
+    - These methods are called directly using the interface name and are not inherited by implementing classes.
+
+
+Functional Interface :
+    - Functional interfaces can be used with lambda expressions or method references.
+    - The @FunctionalInterface annotation can be used to indicate that an interface is a functional interface,
+      although it’s optional.
+    - It contains single abstract method.
+    - But it can have multiple default or static methods.
+    - Functional Interface is additionally recognized as Single Abstract Method Interfaces. 
+      In short, they are also known as SAM interfaces. 
+    - When more than one abstract method present in the functional interface then it throws an error.
+      “Unexpected @FunctionalInterface annotation” message.
+
+      Part Of FunctionalInterface :
+
+      1. Predicate:
+        Part of com.java.util package
+        Always Return boolen value either be true or false
+
+      2. Consumer
+            It represents a function which takes in one argument and produces a result.
+
+
+Marker Interface 
+    It is an empty interface means having no field or methods.
+    Serializable, Cloneable and Remote interface.
+    
+
+
