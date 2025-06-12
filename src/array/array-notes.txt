@@ -1,0 +1,7 @@
+
+
+1. When you have to deal with circular list then used
+
+   int nextIndex = (i + 1) % n; // circular Array calculation
+
+   Here i is current index and n is the total length of element without substracting 1

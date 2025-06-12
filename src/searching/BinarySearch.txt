@@ -1,0 +1,5 @@
+
+Binary Search : Applied on Only When Our Array Is Sorted;
+
+1.How to get Mid 
+    int mid = start + (end - start)/2;

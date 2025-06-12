@@ -1,0 +1,7 @@
+
+When at certain time if cintigious words comes then plz think one time for the sliding window approac:
+
+1. Length of window is to be = j-i+1
+
+2. Shrinking of window means:
+    Run the inside while loop until condition is satisfied
