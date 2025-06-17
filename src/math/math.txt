@@ -1,0 +1,52 @@
+Concepts:
+
+
+
+
+Quections to be done:
+
+| #  | Title                                                                                     | Concepts                   |
+| -- | ----------------------------------------------------------------------------------------- | -------------------------- |
+| 1  | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number)                   | Reverse number, palindrome |
+| 2  | [66. Plus One](https://leetcode.com/problems/plus-one)                                    | Array manipulation, carry  |
+| 3  | [67. Add Binary](https://leetcode.com/problems/add-binary)                                | Binary operations          |
+| 4  | [69. Sqrt(x)](https://leetcode.com/problems/sqrtx)                                        | Binary search, math        |
+| 5  | [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs)                      | Fibonacci, DP              |
+| 6  | [202. Happy Number](https://leetcode.com/problems/happy-number)                           | Hashing, math              |
+| 7  | [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number) | Base conversion            |
+| 8  | [190. Reverse Bits](https://leetcode.com/problems/reverse-bits)                           | Bit manipulation           |
+| 9  | [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits)                   | Bitwise operation          |
+| 10 | [326. Power of Three](https://leetcode.com/problems/power-of-three)                       | Math, recursion            |
+
+Medium Level ===========================================================================================================================
+| #  | Title                                                                                                   | Concepts                    |
+| -- | ------------------------------------------------------------------------------------------------------- | --------------------------- |
+| 1  | [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers)                                     | Linked list + math          |
+| 2  | [29. Divide Two Integers](https://leetcode.com/problems/divide-two-integers)                            | Bitwise division            |
+| 3  | [43. Multiply Strings](https://leetcode.com/problems/multiply-strings)                                  | Simulation, multiplication  |
+| 4  | [50. Pow(x, n)](https://leetcode.com/problems/powx-n)                                                   | Binary exponentiation       |
+| 5  | [60. Permutation Sequence](https://leetcode.com/problems/permutation-sequence)                          | Factorials, permutations    |
+| 6  | [89. Gray Code](https://leetcode.com/problems/gray-code)                                                | Bit manipulation            |
+| 7  | [137. Single Number II](https://leetcode.com/problems/single-number-ii)                                 | Bitwise counting            |
+| 8  | [166. Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal)       | Simulation                  |
+| 9  | [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title)                 | Base conversion             |
+| 10 | [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes)               | Prime factor count          |
+| 11 | [223. Rectangle Area](https://leetcode.com/problems/rectangle-area)                                     | Geometry, math              |
+| 12 | [233. Number of Digit One](https://leetcode.com/problems/number-of-digit-one)                           | Digit DP, counting          |
+| 13 | [264. Ugly Number II](https://leetcode.com/problems/ugly-number-ii)                                     | Min heap, DP                |
+| 14 | [279. Perfect Squares](https://leetcode.com/problems/perfect-squares)                                   | DP, BFS                     |
+| 15 | [343. Integer Break](https://leetcode.com/problems/integer-break)                                       | Greedy, math                |
+| 16 | [357. Count Numbers with Unique Digits](https://leetcode.com/problems/count-numbers-with-unique-digits) | Combinatorics               |
+| 17 | [396. Rotate Function](https://leetcode.com/problems/rotate-function)                                   | Math derivation             |
+| 18 | [441. Arranging Coins](https://leetcode.com/problems/arranging-coins)                                   | Binary search, math formula |
+| 19 | [477. Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance)                     | Bitwise, combinatorics      |
+| 20 | [869. Reordered Power of 2](https://leetcode.com/problems/reordered-power-of-2)                         | Permutations, set logic     |
+
+
+
+
+
+
+
+
+
