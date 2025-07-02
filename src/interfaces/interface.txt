@@ -59,7 +59,7 @@ Functional Interface :
 
 Marker Interface 
     It is an empty interface means having no field or methods.
-    Serializable, Cloneable and Remote interface.
+    Serializable, Cloneable and Runnable interface.
     
 
 

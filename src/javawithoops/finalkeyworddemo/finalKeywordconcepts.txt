@@ -21,7 +21,7 @@
     When we make a final Variable then values can't be reassigned.
     Once Value can be assigned then it can't be reassigned.
 
-1.4 Final Refence Variable also not be immutable.
+1.4 Final Refence Variable also not be mutable i.e immutable
 
 
 Notes : 
