@@ -1,4 +1,4 @@
-package java8.streamdemo;
+package streamdemo;
 
 import java.util.OptionalInt;
 import java.util.stream.IntStream;

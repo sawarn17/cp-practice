@@ -1,4 +1,4 @@
-package javautiltydemos.streamimpl;
+package streamdemo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
