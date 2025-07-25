@@ -1,0 +1,66 @@
+
+Serialization and deserialization are processes in Java (and in programming in general) that involve converting
+ an object into a byte stream and vice versa. This is particularly useful when you need to transfer or store an 
+ object’s state, such as when sending it over a network or persisting it to a file.
+
+
+Serialization:
+Definition: Serialization is the process of converting an object’s state (fields and data) into a byte stream.
+Purpose: It allows you to save the state of an object, so it can be reconstructed later.
+Java Interface: The Serializable interface in Java is a marker interface that indicates a class can be serialized.
+
+
+Deserialization:
+Definition: Deserialization is the process of reconstructing an object from a byte stream.
+Purpose: It allows you to recreate the original object from the saved state.
+Java Interface: Classes that implement Serializable should be deserialized.
+
+
+uses of it : Network Communication, persisting of data in DB, Caching
+
+
+
+Classes that are eligible for serialization need to implement a special marker interface, Serializable.
+
+Both ObjectInputStream and ObjectOutputStream are high level classes that extend java.io.InputStream 
+and java.io.OutputStream, respectively. 
+
+ObjectOutputStream can write primitive types and graphs of objects to an OutputStream as a stream of bytes. 
+We can then read these streams using ObjectInputStream.
+
+The most important method in ObjectOutputStream is:
+public final void writeObject(Object o) throws IOException;
+
+This method takes a serializable object and converts it into a sequence (stream) of bytes. Similarly, the most important method in ObjectInputStream is:
+
+
+
+-----------
+public final Object readObject() 
+  throws IOException, ClassNotFoundException;
+
+
+This method can read a stream of bytes and convert it back into a Java object. 
+It can then be cast back to the original object.
+
+
+---------------------------------------------------------------------------------------------------------------
+
+** Note that static fields belong to a class (as opposed to an object) and are not serialized.
+Also, note that we can use the keyword transient to ignore class fields during serialization:
+
+public class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+    static String country = "ITALY";
+    private int age;
+    private String name;
+    transient int height;
+
+    // getters and setters
+}
+
+============================================================================================================
+Serial Version UID
+** The JVM associates a version (long) number with each serializable class. 
+We use it to verify that the saved and loaded objects have the same attributes, and thus are compatible on serialization.
+
