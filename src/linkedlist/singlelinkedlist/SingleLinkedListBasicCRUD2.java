@@ -40,10 +40,32 @@ public class SingleLinkedListBasicCRUD2 {
         return dummy.next; // return the updated head
     }
 
+    private static ListNode1 deleteKthNode(ListNode1 node, int k) {
+        if (node == null || k <= 0)
+            return node;
+
+        ListNode1 dummy = new ListNode1(0);
+        dummy.next = node;
+
+        ListNode1 current = dummy;
+        int count = 1;
+
+        while (current.next != null) {
+            if (count == k) {
+                current.next = current.next.next; // delete the kth node
+                break;
+            }
+            current = current.next;
+            count++;
+        }
+        return dummy.next; // return possibly new head
+    }
+
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         ListNode1 head = createListNode1(arr);
         deletionOfSinglyLinked(head, 8);
+        deleteKthNode(head, 3);
         displayLinkedList(head);
     }
 }
