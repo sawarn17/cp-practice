@@ -1,4 +1,0 @@
-
-In a singly linked list : each node contains data items and the refrence of the next node.
-Last node contains refrence to null, it means no node present in the next of it.
-

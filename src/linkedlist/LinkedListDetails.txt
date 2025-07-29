@@ -1,0 +1,16 @@
+
+LinkedList:
+A linked list is a fundamental data structure in computer science. 
+It mainly allows efficient insertion and deletion operations compared to arrays.
+
+Features
+Data Structure: Non-contiguous, Linear
+Memory Allocation: Typically allocated one by one to individual elements
+Insertion/Deletion: Efficient
+Access: Sequential
+
+
+Types
+1. Singlely LinkedList
+2. Doubly LinkedList
+3. Circular LinkedList
