@@ -1,0 +1,32 @@
+package linkedlist.singlelinkedlist;
+
+public class SingleLinkedListBasicCRUD2 {
+    
+    //createing of singly-linked list
+    private static ListNode1 createListNode1(int [] arr){
+        ListNode1 dummy = new ListNode1(0);
+        ListNode1 current = dummy;
+
+        for(int i : arr){
+            current.next = new ListNode1(i);
+            current = current.next;
+        }
+
+        return dummy.next;
+    }
+
+    //to show the added linked list
+    private static void displayLinkedList(ListNode1 node){
+        while(node!=null){
+            System.out.println(" "+ node.val);
+            node= node.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        int [] arr = {1,2,3,4,5,6,7,8,9,10};
+        ListNode1 head= createListNode1(arr);
+        
+        displayLinkedList(head);
+    }
+}
