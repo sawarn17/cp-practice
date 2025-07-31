@@ -61,11 +61,58 @@ public class SingleLinkedListBasicCRUD2 {
         return dummy.next; // return possibly new head
     }
 
+    private static int gettingNthNode(ListNode1 node, int nthNode) {
+        if (nthNode <= 0)
+            return -1;
+        int count = 1;
+        while (node != null) {
+            if (count == nthNode) {
+                return node.val;
+            }
+            count++;
+            node = node.next;
+        }
+        return -1;
+    }
+
+    private static int getNthNodeViaRecursiveMethod(ListNode1 node, int index) {
+        if (node == null)
+            return -1;
+        if (index <= 0)
+            return -1;
+        if (index == 1)
+            return node.val;
+        return getNthNodeViaRecursiveMethod(node.next, index - 1);
+    }
+
+    private static int getNthNodeFromLast(ListNode1 node, int nthNode) {
+        int totalCountOfNode = 0;
+        ListNode1 dummy = node;
+
+        while (dummy != null) {
+            dummy = dummy.next;
+            totalCountOfNode++;
+        }
+
+        if (totalCountOfNode < nthNode || nthNode<=0)
+            return -1;
+
+        dummy = node;
+
+        for (int i = 0; i < totalCountOfNode - nthNode; i++) {
+            dummy = dummy.next;
+        }
+        return dummy.val;
+    }
+
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         ListNode1 head = createListNode1(arr);
         deletionOfSinglyLinked(head, 8);
         deleteKthNode(head, 3);
         displayLinkedList(head);
+        System.out.println("::::::::::::::" + gettingNthNode(head, 5));
+        System.out.println("::::::::::::::::::::::" + getNthNodeViaRecursiveMethod(head, 5));
+        System.out.println("Node from last is " + getNthNodeFromLast(head, 3));
     }
 }
