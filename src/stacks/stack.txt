@@ -1,0 +1,10 @@
+
+
+It is Linear DS, which allows us to inser data in LIFO(Last In First Out)
+
+Oprations of stacks 
+    1. Push: insert element
+    2. Pop : Removal of element
+    3. Poll : getting top of element of stack without removeing
+    3. Is empty
+    4. is full
