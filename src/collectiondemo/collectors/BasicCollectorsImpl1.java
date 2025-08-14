@@ -1,6 +1,7 @@
 package collectiondemo.collectors;
 
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,6 +44,25 @@ public class BasicCollectorsImpl1 {
         System.out.println(result);
     }
 
+    //this is used to make summary for it.
+    //summarizingInt, summarizingDouble, summarizingLong are collectors used for calculating statistical 
+    //summaries (like count, sum, min, average, max) for elements in a stream.
+    private static void summriseingCount(){
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        IntSummaryStatistics stats = numbers.stream()
+                                    .collect(Collectors.summarizingInt(Integer::intValue));
+        System.out.println(stats);
+        //IntSummaryStatistics{count=5, sum=15, min=1, average=3.000000, max=5}
+    }
+
+    private static void calculatingDetailsBasedOnKeyAndLength(List<String> details){
+        Map<String, Integer> nameLengthMap = details.stream()
+                                          .collect(Collectors.toMap(Function.identity(), String::length));
+        System.out.println(nameLengthMap);
+    }
+
+    // Advanced Mappings with mapping
+
     /*
      * Collectors allow us to transform and aggregate stream elements in diverse and
      * complex ways.
@@ -54,5 +74,7 @@ public class BasicCollectorsImpl1 {
         mappedToGroupingBy(details);
         partitionByDemo(details);
         demoCustomCollectors();
+        summriseingCount();
+        calculatingDetailsBasedOnKeyAndLength(details);
     }
 }
