@@ -2,9 +2,11 @@ package designpattern;
 
 import java.lang.reflect.Constructor;
 
+//This is the first class
 class SingletonDemo {
     public static SingletonDemo singleton;
     
+    //initializing the with private default constructor so that no external constructor create an issue
     private SingletonDemo(){
         
     }
@@ -20,6 +22,8 @@ class SingletonDemo {
     }
 }
 
+
+//This is the SingleTon Used Pattern
 public class SingletonDesign
 {
 	public static void main(String[] args) {
