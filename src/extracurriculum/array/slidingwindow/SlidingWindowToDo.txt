@@ -1,0 +1,117 @@
+If your goal is to *actually master* sliding window (not just solve a few problems), you need coverage across **all sub-patterns**: fixed window, variable window, two pointers, frequency map, at-most/at-least logic, etc. Just doing random questions won’t get you there—this list is structured so you progressively build intuition.
+
+---
+
+# 🟢 10 Easy Sliding Window Problems (Foundation)
+
+These help you build **basic window movement + fixed size logic**
+
+1. Maximum Average Subarray I
+2. Contains Duplicate II
+3. Minimum Recolors to Get K Consecutive Black Blocks
+4. Defuse the Bomb
+5. Number of Subarrays of Size K and Average ≥ Threshold
+6. Find All Anagrams in a String
+7. Permutation in String
+8. Maximum Number of Vowels in a Substring of Given Length
+9. K Radius Subarray Averages
+10. Binary Subarrays With Sum
+
+👉 Focus:
+
+* Fixed window size
+* Basic frequency array
+* Sliding + counting
+
+---
+
+# 🟡 20 Medium Sliding Window Problems (Real Mastery)
+
+Now you start combining **dynamic window + constraints + optimization**
+
+## 🔹 Variable Window (Expand + Shrink)
+
+1. Longest Substring Without Repeating Characters
+2. Longest Repeating Character Replacement
+3. Minimum Size Subarray Sum
+4. Fruit Into Baskets
+5. Max Consecutive Ones III
+
+---
+
+## 🔹 At Most / Exactly K Pattern (VERY IMPORTANT)
+
+6. Subarrays with K Different Integers
+7. Count Number of Nice Subarrays
+8. Binary Subarrays With Sum
+9. Subarray Product Less Than K
+
+---
+
+## 🔹 String + Frequency Map
+
+10. Minimum Window Substring
+11. Find All Anagrams in a String
+12. Permutation in String
+
+---
+
+## 🔹 Fixed + Optimization
+
+13. Sliding Window Maximum
+14. Grumpy Bookstore Owner
+15. Maximum Points You Can Obtain from Cards
+
+---
+
+## 🔹 Advanced Window Thinking
+
+16. Longest Continuous Subarray With Absolute Diff ≤ Limit
+17. Frequency of the Most Frequent Element
+18. Longest Subarray of 1's After Deleting One Element
+19. Number of Substrings Containing All Three Characters
+20. Get Equal Substrings Within Budget
+
+---
+
+# 🧠 How to Actually Master Sliding Window
+
+Don’t just solve—follow this **pattern recognition strategy**:
+
+### 1. Identify Type Quickly
+
+* Fixed size → move window directly
+* Variable size → expand + shrink
+* “At most K” → convert to “exactly K”
+
+### 2. Memorize Core Templates
+
+* Fixed window (sum/count)
+* Variable window (set/map)
+* AtMost(K) helper function
+
+### 3. Practice Order (IMPORTANT)
+
+* Easy → Medium (same pattern)
+* Don’t jump randomly
+
+---
+
+# ⚡ Pro Tip (What Most People Miss)
+
+Most medium problems reduce to:
+
+```
+exactly(k) = atMost(k) - atMost(k-1)
+```
+
+If you master this, half the list becomes easy.
+
+---
+
+If you want, I can:
+
+* Give you **Java templates for all sliding window patterns** (very useful for interviews)
+* Or create a **7-day roadmap** to finish all these efficiently
+
+Just tell me 👍
