@@ -13,5 +13,7 @@ public class ThreadDemo1 {
    public static void main(String[] args) {
         Thread th = new ThreadEx();
         th.start(); // start method is responsible to run the thread.
+       //when we run multiple thread simuntaneously like th1, th2, th3..... then ::::
+       //The order of thread execution may vary on each run because thread scheduling is non-deterministic.
    }
 }
