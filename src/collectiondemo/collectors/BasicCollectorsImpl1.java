@@ -17,6 +17,8 @@ public class BasicCollectorsImpl1 {
     }
 
     // here duplicate keys handles easily
+    //Function.identity() : In Java 8, Function.identity() is a static utility method that returns a lambda expression representing an identity function, 
+    //which simply returns its input argument unchanged
     private static void mappedToGroupingBy(List<String> details) {
         details.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
