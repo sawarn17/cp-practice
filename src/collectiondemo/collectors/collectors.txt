@@ -25,3 +25,48 @@ Collectors in JAVA
       .summingInt() / summingDouble(): Calculates the sum of integer or double values.
       .averagingInt() / averagingDouble(): Calculates the average value.
       .summarizingInt(): Returns a comprehensive IntSummaryStatistics object containing the count, sum, min, average, and max.
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Ehnacements in Collectors:
+
+  1. Java 10
+    In java 10 a dedicated method are given for the unmodifiedable collection objects.
+    .toUnmodifiableList()
+    .toUnmodifiableSet()
+    .toUnmodifiableMap(keyMapper, valueMapper)
+
+
+2.  The Teeing Collector (Java 12)
+    Prior to Java 12, if you needed to extract two different metrics from the exact same stream (e.g., getting both the Sum and the Count     of a number sequence), you were forced to break the pipeline and iterate over the stream twice
+
+    Collectors.teeing() allows you to split a single stream downstream into two independent collectors, and then merge their final            outputs using a specialized BiFunction.
+
+    // Calculate the mean of a dataset in a single stream pass
+    double average = Stream.of(10, 20, 30, 40)
+        .collect(Collectors.teeing(
+            Collectors.summingDouble(i -> i), // Downstream 1
+            Collectors.counting(),            // Downstream 2
+            (sum, count) -> sum / count       // Merger Function
+        )); // Output: 25.0
+
+3. Filtering and FlatMapping Downstreams (Java 9) **
+   Java 9 heavily upgraded nested/grouped processing by introducing downstream collectors that mimic basic stream operations.
+
+  Collectors.filtering(Predicate, Downstream): Applies a filter inside the collector logic before grouping occurs. This prevents keys         with empty lists from being discarded completely in a groupingBy operation.
+
+  Collectors.flatMapping(Function, Downstream): Handles one-to-many element flattening cleanly inside nested grouping layers.
+
+  // Filters out low numbers while keeping the primary grouping key structure intact
+    Map<Integer, List<Integer>> logic = numbers.stream()
+        .collect(Collectors.groupingBy(
+            n -> n % 2, 
+            Collectors.filtering(n -> n > 10, Collectors.toList())
+        ));
+
+4. The "Gatherer" Revolution (Java 22 - Java 25)
+
+
+
