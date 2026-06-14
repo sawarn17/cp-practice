@@ -1,0 +1,27 @@
+
+Collectors in JAVA
+
+  -Collectors is a utility class that provides a wide variety of implementation strategies for reduction operations on Stream pipelines
+  -It is most commonly used inside the .collect() method of a Stream to accumulate elements into collections, strings, or summaries
+
+
+---------------------------------------------------------------------------------------------------------------------------
+1. Accumulating into CollectionsThese methods gather stream elements into standard Java collections 
+       .toList(): Accumulates elements into a standard
+       .toSet(): Accumulates elements into a Set (removing duplicates)
+       .toCollection(Supplier): Accumulates elements into a specific collection type (e.g., ArrayList::new or TreeSet::new)
+
+2. Transforming and JoiningThese methods modify or string together the elements during collection.
+    .joining(): Concatenates elements into a single String. It can optionally include a delimiter, prefix, 
+                and suffix
+  .mapping(Function, Collector): Applies a transformation function to elements before passing them to another collector.
+  
+3. Grouping and PartitioningThese methods classify elements into subsets based on a specific logic.
+      .groupingBy(Function): Groups elements into a Map based on a classification key (similar to GROUP BY in SQL)
+      .partitioningBy(Predicate): Splits elements into exactly two groups in a Map<Boolean, List> based on a true/false condition.
+  
+4. Numerical Reduction & SummariesThese methods perform mathematical or statistical operations on the stream.
+      .counting(): Counts the total number of elements.
+      .summingInt() / summingDouble(): Calculates the sum of integer or double values.
+      .averagingInt() / averagingDouble(): Calculates the average value.
+      .summarizingInt(): Returns a comprehensive IntSummaryStatistics object containing the count, sum, min, average, and max.
