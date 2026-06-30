@@ -19,10 +19,19 @@ public class TryWithResource4 {
      * we are just using the try with resource it kept the when block of code is
      * executed the resource is
      * automatically removed
+     * 
+     * 
+     * 
+     * try(declare resources here) {
+     * // use resources
+     * }
+     * catch(FileNotFoundException e) {
+     * // exception handling
+     * }
      */
 
     static void tryWithResourceDemo() {
-        
+    
     }
 
     public static void main(String[] args) {
