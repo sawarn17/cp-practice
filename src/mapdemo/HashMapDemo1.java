@@ -6,7 +6,7 @@ public class HashMapDemo1 {
 
     /*
     Initial CapacityDefault Value:
-        16 elements.Constraint: The capacity must always be a power of two (\(2^{n}\)). 
+        16 elements.Constraint: The capacity must always be a power of two ((2^{n})). 
         If you specify a custom initial capacity (e.g., 20), the HashMap constructor runs a bit-shifting algorithm to round it up to the next power of two (which would be 32).Why Power of Two? 
         It optimizes index calculations. Instead of expensive modulo division (hash % capacity), Java uses a bitwise AND operation:
 
