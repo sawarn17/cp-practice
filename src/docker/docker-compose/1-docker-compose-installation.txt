@@ -1,0 +1,3 @@
+
+#to intsall docker compose use this command
+sudo apt intsall docker-compose
