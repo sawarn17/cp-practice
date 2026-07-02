@@ -1,1 +1,12 @@
 
+* Binary search is a highly efficient divide-and-conquer algorithm designed to locate a target element within a sorted array or list by repeatedly halving the search space.
+
+Time complexity: O(logn)
+
+
+Core Implemetion : 
+
+  Findout the middle of the arraylist
+    int mid = low + (high - low) / 2;
+  if arr[mid] == target : then finally you got the index value
+  if arr[mid] > target then need to search in left side other wise need to search in right side
