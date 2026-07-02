@@ -1,0 +1,29 @@
+package strivers.linkedlist.medium;
+
+import strivers.linkedlist.ListNode;
+
+public class RemovingNthNodeFromLL {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        //taking dummy node to handle the edge case where n == len
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        // Move fast n+1 steps ahead
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
+        }
+
+        // Move both pointers
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // Remove nth node from end : by de referencing the ele
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+}
