@@ -109,5 +109,8 @@ public class TreeMapDemo3 {
      */
     public static void main(String[] args) {
         treeMapNaturalOrder();
+
+        //reverse order 
+        TreeMap<Integer, String> revTreeMap = new TreeMap<>(Comparator.reverseOrder());
     }
 }
