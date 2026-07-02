@@ -1,0 +1,187 @@
+Here’s a **pattern-wise classification of Binary Search problems on LeetCode**, organized by concept.
+This is the structure top candidates use to master the topic efficiently.
+
+---
+
+# 🔹 1. Classic Binary Search (Exact Match)
+
+Basic search in sorted array.
+
+* **704 – Binary Search**::::
+* **35 – Search Insert Position** ::::
+* **33 – Search in Rotated Sorted Array**
+* **81 – Search in Rotated Sorted Array II**
+* **153 – Find Minimum in Rotated Sorted Array**
+* **154 – Find Minimum in Rotated Sorted Array II**
+
+---
+
+# 🔹 2. First / Last Occurrence (Lower Bound / Upper Bound)
+
+Find boundary index instead of exact match.
+
+* **34 – Find First and Last Position of Element in Sorted Array**
+* **278 – First Bad Version**
+* **35 – Search Insert Position**
+* **852 – Peak Index in a Mountain Array**
+* **162 – Find Peak Element**
+* **1064 – Fixed Point**
+
+👉 Pattern: move left/right even after finding target.
+
+---
+
+# 🔹 3. Binary Search on Answer (Most Important Pattern)
+
+You don’t search in array — you search in the **answer space**.
+
+Used when:
+
+* Minimizing maximum
+* Maximizing minimum
+* Finding threshold
+
+Very common in interviews.
+
+* **875 – Koko Eating Bananas**
+* **1011 – Capacity To Ship Packages Within D Days**
+* **410 – Split Array Largest Sum**
+* **1482 – Minimum Number of Days to Make m Bouquets**
+* **1552 – Magnetic Force Between Two Balls**
+* **1283 – Find the Smallest Divisor Given a Threshold**
+* **1760 – Minimum Limit of Balls in a Bag**
+* **2187 – Minimum Time to Complete Trips**
+* **2226 – Maximum Candies Allocated to K Children**
+
+👉 Pattern:
+
+```
+while (low <= high)
+    if (isPossible(mid))
+        high = mid - 1;
+    else
+        low = mid + 1;
+```
+
+---
+
+# 🔹 4. Search in Matrix
+
+Treat matrix as sorted structure.
+
+* **74 – Search a 2D Matrix**
+* **240 – Search a 2D Matrix II**
+* **378 – Kth Smallest Element in a Sorted Matrix**
+* **1901 – Find a Peak Element II**
+
+---
+
+# 🔹 5. Peak / Mountain Array Pattern
+
+Array increases then decreases.
+
+* **162 – Find Peak Element**
+* **852 – Peak Index in a Mountain Array**
+* **1095 – Find in Mountain Array**
+
+---
+
+# 🔹 6. Rotated Sorted Array Pattern
+
+Two sorted halves.
+
+* **33 – Search in Rotated Sorted Array**
+* **81 – Search in Rotated Sorted Array II**
+* **153 – Find Minimum in Rotated Sorted Array**
+* **154 – Find Minimum in Rotated Sorted Array II**
+
+Key idea:
+
+```
+if (arr[left] <= arr[mid])
+    left half sorted
+else
+    right half sorted
+```
+
+---
+
+# 🔹 7. Binary Search with Duplicates
+
+Handling equal values carefully.
+
+* **34 – Find First and Last Position**
+* **81 – Search in Rotated Sorted Array II**
+* **540 – Single Element in a Sorted Array**
+
+---
+
+# 🔹 8. Binary Search on Real Numbers (Floating Point)
+
+Precision-based search.
+
+* **69 – Sqrt(x)**
+* **50 – Pow(x, n)**
+* **367 – Valid Perfect Square**
+
+---
+
+# 🔹 9. Kth Smallest / Order Statistics via Binary Search
+
+Binary search on value range.
+
+* **378 – Kth Smallest Element in a Sorted Matrix**
+* **668 – Kth Smallest Number in Multiplication Table**
+* **719 – Find K-th Smallest Pair Distance**
+* **786 – K-th Smallest Prime Fraction**
+
+---
+
+# 🔹 10. Advanced / Hard Binary Search
+
+* **4 – Median of Two Sorted Arrays**
+* **315 – Count of Smaller Numbers After Self**
+* **493 – Reverse Pairs**
+* **1231 – Divide Chocolate**
+* **774 – Minimize Max Distance to Gas Station**
+
+---
+
+# 🔥 Most Important Problems To Master
+
+If you want strong interview preparation, do these first:
+
+1. 704
+2. 34
+3. 33
+4. 153
+5. 875
+6. 1011
+7. 410
+8. 1482
+9. 1552
+10. 4 (Hard)
+
+---
+
+# 🧠 Master Binary Search by Pattern, Not by Problem
+
+Most candidates fail because they memorize problems instead of patterns.
+
+The real patterns are:
+
+1. Exact match
+2. First/Last occurrence
+3. Rotated array
+4. Peak finding
+5. Binary search on answer
+6. Binary search on value space
+
+---
+
+If you want, I can next give you:
+
+* ✅ A complete Binary Search template sheet (Java)
+* ✅ 25 must-do problems in difficulty order
+* ✅ A 7-day Binary Search mastery plan
+* ✅ Visual explanation of Binary Search on Answer
