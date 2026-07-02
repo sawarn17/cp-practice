@@ -1,4 +1,4 @@
-package strivers.binarysearch.easy;
+package striverdsa.binarysearch.easy;
 
 //this is 2nd of BS
 public class LowerBoundUpperBoundBS2 {

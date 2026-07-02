@@ -1,4 +1,4 @@
-package strivers.linkedlist;
+package striverdsa.linkedlist.singlylll;
 
 public class ListNode {
     public int val;

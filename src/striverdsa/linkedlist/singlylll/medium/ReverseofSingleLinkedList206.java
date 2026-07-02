@@ -1,6 +1,6 @@
-package strivers.linkedlist.medium;
+package striverdsa.linkedlist.singlylll.medium;
 
-import strivers.linkedlist.ListNode;
+import striverdsa.linkedlist.singlylll.ListNode;
 
 public class ReverseofSingleLinkedList206 {
 

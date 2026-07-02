@@ -1,4 +1,4 @@
-package strivers.linkedlist.easy;
+package striverdsa.linkedlist.singlylll.easy;
 
 public class LinkedListBasicOperations {
     

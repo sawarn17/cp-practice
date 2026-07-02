@@ -1,4 +1,4 @@
-package strivers.binarysearch.easy;
+package striverdsa.binarysearch.easy;
 
 public class BinarySearch1 {
 

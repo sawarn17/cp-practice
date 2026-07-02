@@ -1,4 +1,4 @@
-package strivers.binarysearch.medium;
+package striverdsa.binarysearch.medium;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

@@ -1,4 +1,4 @@
-package leetcode.array.tries.medium;
+package leetcode.triesdemo.medium;
 
 import java.util.HashSet;
 import java.util.Set;

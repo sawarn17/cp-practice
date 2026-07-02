@@ -1,6 +1,6 @@
-package strivers.linkedlist.easy;
+package striverdsa.linkedlist.singlylll.easy;
 
-import strivers.linkedlist.ListNode;
+import striverdsa.linkedlist.singlylll.ListNode;
 
 public class MiddleOfLinkedList_LQN_876 {
 
