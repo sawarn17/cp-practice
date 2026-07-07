@@ -1,0 +1,18 @@
+--In software engineering, Inversion of Control (IoC) is a design principle that transfers the control of object creation, 
+  configuration, and lifecycle management from the application code to an external container or framework. 
+
+--Instead of your code calling a library to instantiate dependencies using the new keyword, a framework-managed container automatically "injects" those dependencies into your classes when needed.
+
+--The "Traditional" vs. "IoC" Approach :
+  To understand IoC, think of the difference between driving a car and taking a train:
+  1. Traditional Control (Driving): You control the engine, route, and scheduling. Your class manually creates every object it requires, leading to tightly coupled code.
+
+  2. Inversion of Control (Train): You step inside and let the system handle the route and operation. Your class simply declares what it needs, and the framework provides it
+
+--The advantages of this architecture are:
+
+  1. Decoupling the execution of a task from its implementation
+  2. Making it easier to switch between different implementations
+  3. Greater modularity of a program
+  4. Greater ease in testing a program by isolating a component or mocking its dependencies, and allowing components to communicate through contracts.
+
