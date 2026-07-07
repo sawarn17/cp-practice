@@ -1,0 +1,138 @@
+If you're preparing for **SDE-1 interviews at AWS, Microsoft, Google, Atlassian, Walmart, Adobe, etc.**, the following LeetCode string problems cover almost every important string pattern.
+
+---
+
+# 🟢 10 Easy String Problems
+
+| #  | Problem                            | Pattern              | Difficulty |
+| -- | ---------------------------------- | -------------------- | ---------- |
+| 1  | Valid Anagram                      | Frequency Count      | Easy       |
+| 2  | Valid Palindrome                   | Two Pointers         | Easy       |
+| 3  | Reverse String                     | Two Pointers         | Easy       |
+| 4  | Implement strStr()                 | String Matching      | Easy       |
+| 5  | Length of Last Word                | Traversal            | Easy       |
+| 6  | Longest Common Prefix              | Prefix Matching      | Easy       |
+| 7  | Is Subsequence                     | Two Pointers         | Easy       |
+| 8  | Detect Capital                     | Character Processing | Easy       |
+| 9  | Reverse Words in a String III      | String Manipulation  | Easy       |
+| 10 | First Unique Character in a String | HashMap/Frequency    | Easy       |
+
+---
+
+# 🟡 20 Medium String Problems
+
+## 1. Sliding Window
+
+These are asked **very frequently**.
+
+| Problem                                        | Pattern                  |
+| ---------------------------------------------- | ------------------------ |
+| Longest Substring Without Repeating Characters | Sliding Window + HashSet |
+| Longest Repeating Character Replacement        | Variable Sliding Window  |
+| Permutation in String                          | Fixed Window + Frequency |
+| Find All Anagrams in a String                  | Sliding Window           |
+| Minimum Window Substring                       | Advanced Sliding Window  |
+
+---
+
+## 2. Two Pointer
+
+| Problem                                         | Pattern             |
+| ----------------------------------------------- | ------------------- |
+| Reverse Words in a String                       | Two Pointer         |
+| Append Characters to String to Make Subsequence | Two Pointer         |
+| Backspace String Compare                        | Reverse Two Pointer |
+
+---
+
+## 3. HashMap / Frequency
+
+| Problem                      | Pattern   |
+| ---------------------------- | --------- |
+| Group Anagrams               | HashMap   |
+| Sort Characters By Frequency | Frequency |
+| Custom Sort String           | Counting  |
+
+---
+
+## 4. Palindrome
+
+| Problem                       | Pattern              |
+| ----------------------------- | -------------------- |
+| Longest Palindromic Substring | Expand Around Center |
+| Palindromic Substrings        | Expand Around Center |
+| Valid Palindrome II           | Greedy               |
+
+---
+
+## 5. Stack Based
+
+| Problem                                     | Pattern |
+| ------------------------------------------- | ------- |
+| Decode String                               | Stack   |
+| Remove All Adjacent Duplicates In String II | Stack   |
+
+---
+
+## 6. String Construction
+
+| Problem            | Pattern     |
+| ------------------ | ----------- |
+| Multiply Strings   | Simulation  |
+| Zigzag Conversion  | Simulation  |
+| String Compression | Two Pointer |
+
+---
+
+## 7. Dynamic Programming
+
+| Problem                         | Pattern |
+| ------------------------------- | ------- |
+| Word Break                      | DP      |
+| Longest Palindromic Subsequence | DP      |
+
+---
+
+## 8. KMP / Pattern Matching
+
+| Problem                                            | Pattern |
+| -------------------------------------------------- | ------- |
+| Find the Index of the First Occurrence in a String | KMP     |
+| Repeated Substring Pattern                         | KMP     |
+
+---
+
+# 📌 Pattern-wise Checklist
+
+| Pattern         | Problems                      |
+| --------------- | ----------------------------- |
+| Two Pointer     | 125, 344, 392, 151, 2486, 680 |
+| Sliding Window  | 3, 76, 424, 438, 567          |
+| HashMap         | 49, 242, 387, 451             |
+| Frequency Count | 242, 451, 791                 |
+| Stack           | 394, 1209                     |
+| Palindrome      | 5, 647, 680                   |
+| Simulation      | 6, 43, 443                    |
+| KMP             | 28, 459                       |
+| DP              | 139, 516                      |
+| Prefix          | 14                            |
+| Traversal       | 58, 520                       |
+
+---
+
+# ⭐ Must-Do Top 10 (Most Asked in Big Tech)
+
+If you have limited time, prioritize these:
+
+1. Longest Substring Without Repeating Characters
+2. Minimum Window Substring
+3. Group Anagrams
+4. Longest Palindromic Substring
+5. Find All Anagrams in a String
+6. Permutation in String
+7. Decode String
+8. Word Break
+9. Longest Repeating Character Replacement
+10. Valid Anagram
+
+This set gives you excellent coverage of the string concepts that frequently appear in interviews at top tech companies.
