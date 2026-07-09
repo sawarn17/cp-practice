@@ -1,0 +1,233 @@
+If your goal is to **master Arrays for SDE-2/SDE-3 interviews (Amazon, Microsoft, Google, Atlassian, Uber, Walmart, Adobe, etc.)**, don't solve random problems. Solve them in the correct order so every pattern builds on the previous one.
+
+Below is a roadmap of **70+ carefully selected LeetCode array problems**.
+
+---
+
+# Level 1 — Array Basics (Easy)
+
+Master traversal, indexing, frequency counting.
+
+| #  | Problem                                 | Pattern     |
+| -- | --------------------------------------- | ----------- |
+| 1  | Two Sum                                 | HashMap     |
+| 2  | Contains Duplicate                      | HashSet     |
+| 3  | Remove Duplicates from Sorted Array     | Two Pointer |
+| 4  | Remove Element                          | Two Pointer |
+| 5  | Merge Sorted Array                      | Two Pointer |
+| 6  | Move Zeroes                             | Two Pointer |
+| 7  | Best Time to Buy and Sell Stock         | Greedy      |
+| 8  | Maximum Subarray                        | Kadane      |
+| 9  | Find Pivot Index                        | Prefix Sum  |
+| 10 | Running Sum of 1D Array                 | Prefix Sum  |
+| 11 | Richest Customer Wealth                 | Simulation  |
+| 12 | Kids With Greatest Number of Candies    | Array       |
+| 13 | Height Checker                          | Sorting     |
+| 14 | Third Maximum Number                    | Array       |
+| 15 | Find Numbers with Even Number of Digits | Math        |
+
+---
+
+# Level 2 — Two Pointer (Easy → Medium)
+
+| #  | Problem                                |
+| -- | -------------------------------------- |
+| 16 | Container With Most Water              |
+| 17 | Squares of a Sorted Array              |
+| 18 | Sort Colors                            |
+| 19 | 3Sum                                   |
+| 20 | 3Sum Closest                           |
+| 21 | 4Sum                                   |
+| 22 | Partition Array According to Pivot     |
+| 23 | Bag of Tokens                          |
+| 24 | Boats to Save People                   |
+| 25 | Remove Duplicates from Sorted Array II |
+
+---
+
+# Level 3 — Sliding Window
+
+One of the most important interview topics.
+
+| #  | Problem                                                |
+| -- | ------------------------------------------------------ |
+| 26 | Maximum Average Subarray I                             |
+| 27 | Maximum Points You Can Obtain from Cards               |
+| 28 | Grumpy Bookstore Owner                                 |
+| 29 | Fruit Into Baskets                                     |
+| 30 | Longest Continuous Subarray With Absolute Diff ≤ Limit |
+| 31 | Maximum Erasure Value                                  |
+| 32 | Minimum Size Subarray Sum                              |
+| 33 | Maximum Consecutive Ones III                           |
+| 34 | Frequency of the Most Frequent Element                 |
+| 35 | Subarray Product Less Than K                           |
+
+---
+
+# Level 4 — Prefix Sum
+
+| #  | Problem                                        |
+| -- | ---------------------------------------------- |
+| 36 | Range Sum Query - Immutable                    |
+| 37 | Subarray Sum Equals K                          |
+| 38 | Continuous Subarray Sum                        |
+| 39 | Find Pivot Index                               |
+| 40 | Product of Array Except Self                   |
+| 41 | Minimum Value to Get Positive Step by Step Sum |
+| 42 | Count Number of Nice Subarrays                 |
+| 43 | Binary Subarrays With Sum                      |
+
+---
+
+# Level 5 — HashMap + Prefix Sum
+
+These appear frequently in Amazon.
+
+| #  | Problem                         |
+| -- | ------------------------------- |
+| 44 | Longest Consecutive Sequence    |
+| 45 | Majority Element                |
+| 46 | Majority Element II             |
+| 47 | Top K Frequent Elements         |
+| 48 | Find All Duplicates in an Array |
+| 49 | First Missing Positive          |
+| 50 | Missing Number                  |
+| 51 | Single Number                   |
+| 52 | Single Number II                |
+| 53 | Longest Harmonious Subsequence  |
+
+---
+
+# Level 6 — Binary Search on Array
+
+| #  | Problem                                 |
+| -- | --------------------------------------- |
+| 54 | Search Insert Position                  |
+| 55 | Search in Rotated Sorted Array          |
+| 56 | Find Minimum in Rotated Sorted Array    |
+| 57 | Find Peak Element                       |
+| 58 | Koko Eating Bananas                     |
+| 59 | Capacity To Ship Packages Within D Days |
+| 60 | Split Array Largest Sum                 |
+
+---
+
+# Level 7 — Greedy Arrays
+
+| #  | Problem            |
+| -- | ------------------ |
+| 61 | Jump Game          |
+| 62 | Jump Game II       |
+| 63 | Gas Station        |
+| 64 | Candy              |
+| 65 | Can Place Flowers  |
+| 66 | Wiggle Subsequence |
+
+---
+
+# Level 8 — Matrix (2D Arrays)
+
+Very common in interviews.
+
+| #  | Problem               |
+| -- | --------------------- |
+| 67 | Set Matrix Zeroes     |
+| 68 | Spiral Matrix         |
+| 69 | Rotate Image          |
+| 70 | Diagonal Traverse     |
+| 71 | Search a 2D Matrix    |
+| 72 | Search a 2D Matrix II |
+| 73 | Game of Life          |
+| 74 | Flood Fill            |
+
+---
+
+# Level 9 — Advanced Arrays
+
+| #  | Problem                     |
+| -- | --------------------------- |
+| 75 | Next Permutation            |
+| 76 | Merge Intervals             |
+| 77 | Insert Interval             |
+| 78 | Non-overlapping Intervals   |
+| 79 | Meeting Rooms II            |
+| 80 | Interval List Intersections |
+
+---
+
+# Level 10 — Hard Arrays
+
+These are excellent for FAANG preparation.
+
+| #  | Problem                                    |
+| -- | ------------------------------------------ |
+| 81 | Trapping Rain Water                        |
+| 82 | First Missing Positive                     |
+| 83 | Median of Two Sorted Arrays                |
+| 84 | Sliding Window Maximum                     |
+| 85 | Maximum Gap                                |
+| 86 | Count of Smaller Numbers After Self        |
+| 87 | Reverse Pairs                              |
+| 88 | Create Maximum Number                      |
+| 89 | Maximum Sum of 3 Non-Overlapping Subarrays |
+| 90 | Shortest Subarray with Sum at Least K      |
+
+---
+
+# Bonus (Most Asked Array Problems)
+
+These are asked repeatedly across top companies.
+
+* Two Sum
+* 3Sum
+* Product of Array Except Self
+* Maximum Subarray
+* Container With Most Water
+* Trapping Rain Water
+* Merge Intervals
+* Insert Interval
+* Jump Game
+* Jump Game II
+* Next Permutation
+* Search in Rotated Sorted Array
+* Find Minimum in Rotated Sorted Array
+* Set Matrix Zeroes
+* Rotate Image
+* Spiral Matrix
+* Sort Colors
+* First Missing Positive
+* Sliding Window Maximum
+* Longest Consecutive Sequence
+
+---
+
+# Pattern Checklist (Master These)
+
+| Pattern               | Problems |
+| --------------------- | -------- |
+| Two Pointers          | 10+      |
+| Sliding Window        | 10+      |
+| Prefix Sum            | 8+       |
+| HashMap               | 10+      |
+| Greedy                | 6+       |
+| Binary Search         | 7+       |
+| Sorting               | 8+       |
+| Intervals             | 5+       |
+| Matrix                | 8+       |
+| Kadane's Algorithm    | 3+       |
+| Monotonic Queue/Deque | 2+       |
+| Heap                  | 3+       |
+| Merge Sort Technique  | 2+       |
+
+---
+
+## Recommended solving order (30-day plan)
+
+* **Days 1–5:** Problems 1–15 (Fundamentals)
+* **Days 6–10:** Problems 16–35 (Two Pointers + Sliding Window)
+* **Days 11–15:** Problems 36–53 (Prefix Sum + Hashing)
+* **Days 16–20:** Problems 54–66 (Binary Search + Greedy)
+* **Days 21–24:** Problems 67–80 (Matrix + Intervals)
+* **Days 25–30:** Problems 81–90 (Hard Problems + Revision)
+
+By the end of this list, you'll have covered nearly every major array pattern used in coding interviews, giving you a strong foundation for tackling array-based questions in top tech company interviews.
