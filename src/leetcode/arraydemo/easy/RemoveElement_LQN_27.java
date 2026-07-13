@@ -1,0 +1,22 @@
+package leetcode.arraydemo.easy;
+
+public class RemoveElement_LQN_27 {
+
+    public static int removeElement(int[] nums, int val) {
+        int prevPoint =0, currIndex=0;
+        while(currIndex < nums.length){
+            if(nums[currIndex] != val){
+                nums[prevPoint] = nums[currIndex];
+                prevPoint++;
+            }
+            currIndex++;
+        }
+        return prevPoint;
+    }
+    
+    public static void main(String[] args) {
+        int [] nums = {0,1,2,2,3,0,4,2};
+        int val = 2;
+        System.out.println(removeElement(nums, val));
+    }
+}
