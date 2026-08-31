@@ -1,0 +1,25 @@
+
+
+1. pwd : to get the present directory name
+2. ls: if simple then show all the directory
+    ls -l :- To get all the permission in details definition of the directory.
+    ls -a :- Show all the file and folder including hiding folder etc.
+
+
+
+3. uname : show the system details.
+   uname -r : shows the working kernel name
+
+
+4. cd : to open the directory
+5. clear : to clear the windows.
+6. whoami : current user name
+7. history : to get the history of ran command.
+8. free : to get the memory details.
+9. nslookup domainname : to get the dns details.
+
+
+**10 ssh-keygen -t rsa : to generate the 
+
+
+
