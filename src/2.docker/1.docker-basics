@@ -1,0 +1,17 @@
+
+
+** Containers share the host operating system’s kernel but keep applications and their dependencies isolated. 
+    This makes containers faster to start, less resource-hungry, and portable across environments.
+
+
+
+================================Architecture of Docker===================================================
+Docker is based on a client–server model.
+The Docker client sends requests to the Docker Daemon.
+The Docker Daemon handles container lifecycle tasks.
+Communication happens over a REST API using sockets or networks.
+
+
+The Core Architectural Model
+    1.Docker Client:
+        

@@ -1,0 +1,19 @@
+
+
+1. To Build the docker image
+    docker build -t image_name:tag .
+
+    -docker build :   The core command that invokes the Docker Buildx CLI tool under the hood.
+    --t my-app:v1.0 : The tag flag. This assigns a human-readable name (my-app) and an optional version tag (v1.0) to your image. 
+                      If you omit the :v1.0 version, Docker defaults it to :latest.
+    --.:              The build context. 
+
+
+    -------------If docker file is located on some other path then------------------------
+    docker build -f ./config/production.Dockerfile -t my-app .
+
+    locate docker file with -f
+
+    It is used to pass the varibale at run time
+    docker build --build-arg API_VERSION=2.0 -t my-app .
+

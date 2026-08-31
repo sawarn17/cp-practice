@@ -1,0 +1,1944 @@
+============================================================
+DOCKER COMPLETE COMMAND CHEAT SHEET
+============================================================
+Purpose:
+- Build Docker images
+- Run and manage containers
+- Work with ports, environment variables, volumes and networks
+- Tag, push and pull images
+- Use Docker Buildx
+- Use Docker Compose
+- Debug and clean Docker resources
+- Production-oriented Docker commands
+
+============================================================
+1. DOCKER BASIC ARCHITECTURE
+============================================================
+
+Dockerfile
+    |
+    | docker build
+    v
+Docker Image
+    |
+    | docker run
+    v
+Docker Container
+    |
+    +--> docker logs
+    +--> docker exec
+    +--> docker inspect
+    +--> docker stats
+    |
+    v
+docker stop / restart / rm
+
+Image Registry
+    ^
+    |
+docker push
+    |
+docker tag
+    |
+Docker Image
+
+Pull from Registry:
+docker pull
+    |
+    v
+Docker Image
+    |
+    v
+docker run
+
+
+============================================================
+2. CHECK DOCKER INSTALLATION
+============================================================
+
+# Show installed Docker version
+docker --version
+
+# Show detailed Docker engine information
+docker info
+
+# Show general Docker help
+docker --help
+
+# Show help for a specific command
+docker build --help
+docker run --help
+docker exec --help
+docker image --help
+docker container --help
+docker network --help
+docker volume --help
+
+
+============================================================
+3. DOCKER LOGIN
+============================================================
+
+# Login to Docker Hub
+docker login
+
+# Login to a private Docker registry
+docker login registry.example.com
+
+# Docker stores authentication configuration here on Linux/macOS
+cat ~/.docker/config.json
+
+# IMPORTANT:
+# In CI/CD pipelines, prefer access tokens, IAM/workload identity,
+# or the CI platform's secret-management mechanism instead of
+# hard-coding passwords.
+
+
+============================================================
+4. DOCKERFILE
+============================================================
+
+# Example Dockerfile for a Spring Boot Java 21 application
+
+FROM eclipse-temurin:21-jre
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy the built Spring Boot JAR into the image
+COPY target/app.jar app.jar
+
+# Document the port used by the application
+EXPOSE 8080
+
+# Start the Spring Boot application
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+
+============================================================
+5. docker build - BASIC IMAGE BUILD
+============================================================
+
+# Build an image using the Dockerfile in the current directory
+docker build -t my-app:v1.0 .
+
+# Same command using the long form of --tag
+docker build --tag my-app:v1.0 .
+
+Meaning:
+
+docker build
+    -> Builds a Docker image.
+
+-t / --tag
+    -> Assigns a name and tag to the image.
+
+my-app
+    -> Image repository/name.
+
+v1.0
+    -> Image tag/version.
+
+.
+    -> Build context.
+       The current directory is sent to Docker as the build context.
+
+# If no tag is specified, Docker normally uses :latest
+docker build -t my-app .
+
+# Equivalent image name:
+# my-app:latest
+
+
+============================================================
+6. BUILD USING A DIFFERENT DOCKERFILE
+============================================================
+
+# Dockerfile located somewhere else
+docker build \
+    -f ./config/production.Dockerfile \
+    -t my-app:prod \
+    .
+
+# -f / --file specifies the Dockerfile to use.
+
+# Development Dockerfile
+docker build \
+    -f ./config/development.Dockerfile \
+    -t my-app:dev \
+    .
+
+
+============================================================
+7. DOCKER BUILD CONTEXT
+============================================================
+
+# Current directory is the build context
+docker build -t my-app:v1.0 .
+
+# A different directory can be used as build context
+docker build -t my-app:v1.0 ./project
+
+# IMPORTANT:
+# COPY and ADD can normally access files only from the build context.
+#
+# Example:
+# project/
+#   Dockerfile
+#   target/
+#       app.jar
+#
+# docker build -t my-app:v1.0 .
+#
+# Dockerfile:
+# COPY target/app.jar app.jar
+
+
+============================================================
+8. .dockerignore
+============================================================
+
+# Create a file:
+# .dockerignore
+
+# Example content:
+
+.git
+.gitignore
+.idea
+.vscode
+*.log
+.env
+node_modules
+target/*.original
+target/test-classes
+
+# Why?
+# .dockerignore prevents unnecessary files from being included
+# in the Docker build context.
+#
+# This improves:
+# - Build speed
+# - Security
+# - Build performance
+# - Image build efficiency
+
+
+============================================================
+9. BUILD ARGUMENTS - ARG / --build-arg
+============================================================
+
+# Dockerfile example:
+
+FROM eclipse-temurin:21-jre
+
+ARG API_VERSION
+
+WORKDIR /app
+
+COPY target/app.jar app.jar
+
+RUN echo "Building API version: ${API_VERSION}"
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Pass the build-time variable
+docker build \
+    --build-arg API_VERSION=2.0 \
+    -t my-app:v2.0 \
+    .
+
+# Multiple build arguments
+docker build \
+    --build-arg API_VERSION=2.0 \
+    --build-arg ENVIRONMENT=production \
+    -t my-app:v2.0 \
+    .
+
+# Using a shell variable
+export API_VERSION=2.0
+
+docker build \
+    --build-arg API_VERSION=$API_VERSION \
+    -t my-app:v2.0 \
+    .
+
+IMPORTANT:
+ARG is primarily for BUILD-TIME configuration.
+
+For runtime configuration, use:
+docker run -e VARIABLE=value ...
+
+
+============================================================
+10. BUILD WITHOUT CACHE
+============================================================
+
+# Ignore Docker's build cache
+docker build \
+    --no-cache \
+    -t my-app:v1.0 \
+    .
+
+# Useful when:
+# - Dependencies have changed
+# - A cached layer is causing a problem
+# - You need a completely fresh build
+
+
+============================================================
+11. ALWAYS CHECK LATEST BASE IMAGE
+============================================================
+
+# Pull a newer version of the FROM image when building
+docker build \
+    --pull \
+    -t my-app:v1.0 \
+    .
+
+# Fresh build + latest base image
+docker build \
+    --pull \
+    --no-cache \
+    -t my-app:v1.0 \
+    .
+
+
+============================================================
+12. BUILD WITH DETAILED OUTPUT
+============================================================
+
+# Show detailed BuildKit output
+docker build \
+    --progress=plain \
+    -t my-app:v1.0 \
+    .
+
+# Useful for debugging build failures.
+
+
+============================================================
+13. LIST DOCKER IMAGES
+============================================================
+
+# List local Docker images
+docker images
+
+# Modern equivalent
+docker image ls
+
+# List all images including intermediate images
+docker images -a
+
+
+============================================================
+14. INSPECT A DOCKER IMAGE
+============================================================
+
+# Show detailed image metadata
+docker image inspect my-app:v1.0
+
+# Generic inspect command
+docker inspect my-app:v1.0
+
+# Useful information includes:
+# - Entrypoint
+# - CMD
+# - Environment variables
+# - Working directory
+# - Image layers
+# - OS
+# - Architecture
+# - Configuration
+
+
+============================================================
+15. IMAGE HISTORY
+============================================================
+
+# Show image layers and Dockerfile instructions
+docker history my-app:v1.0
+
+# Useful for understanding:
+# - Image layers
+# - Layer sizes
+# - Which Dockerfile command created each layer
+
+
+============================================================
+16. DOCKER DISK USAGE
+============================================================
+
+# Show Docker disk usage
+docker system df
+
+# Detailed disk usage
+docker system df -v
+
+
+============================================================
+17. docker run - BASIC CONTAINER
+============================================================
+
+# Run a container from an image
+docker run my-app:v1.0
+
+# Run in detached/background mode
+docker run -d my-app:v1.0
+
+# -d = detached mode
+
+
+============================================================
+18. RUN CONTAINER WITH A NAME
+============================================================
+
+docker run \
+    --name my-app-container \
+    -d \
+    my-app:v1.0
+
+# Now you can use the name instead of the container ID:
+docker logs my-app-container
+docker stop my-app-container
+docker restart my-app-container
+
+
+============================================================
+19. PORT MAPPING
+============================================================
+
+# Spring Boot application listens on 8080 inside container
+docker run \
+    -d \
+    -p 8080:8080 \
+    --name my-app \
+    my-app:v1.0
+
+# Format:
+# -p HOST_PORT:CONTAINER_PORT
+
+# Example:
+docker run \
+    -d \
+    -p 9090:8080 \
+    my-app:v1.0
+
+# Host:
+# http://localhost:9090
+#
+# Container:
+# port 8080
+
+
+============================================================
+20. BIND PORT TO SPECIFIC HOST IP
+============================================================
+
+# Expose only through localhost
+docker run \
+    -p 127.0.0.1:8080:8080 \
+    my-app:v1.0
+
+# Useful when the application should not be directly exposed
+# on all host network interfaces.
+
+
+============================================================
+21. ENVIRONMENT VARIABLES AT RUNTIME
+============================================================
+
+# Pass a single environment variable
+docker run \
+    -e SPRING_PROFILES_ACTIVE=prod \
+    my-app:v1.0
+
+# Multiple variables
+docker run \
+    -e SPRING_PROFILES_ACTIVE=prod \
+    -e DB_HOST=mysql \
+    -e DB_PORT=3306 \
+    -e DB_NAME=employee \
+    my-app:v1.0
+
+
+============================================================
+22. ENVIRONMENT FILE
+============================================================
+
+# Create .env file:
+
+SPRING_PROFILES_ACTIVE=prod
+DB_HOST=mysql
+DB_PORT=3306
+DB_NAME=employee
+
+# Run using env file:
+docker run \
+    --env-file .env \
+    my-app:v1.0
+
+# IMPORTANT:
+# Do not commit secrets such as database passwords or API keys
+# into source control.
+
+
+============================================================
+23. OVERRIDE CONTAINER COMMAND
+============================================================
+
+# If the image contains a CMD, you can override it:
+docker run my-app:v1.0 ls
+
+# Run a shell if available:
+docker run -it my-app:v1.0 /bin/bash
+
+# If bash does not exist:
+docker run -it my-app:v1.0 /bin/sh
+
+
+============================================================
+24. ENTRYPOINT VS CMD
+============================================================
+
+# Example:
+
+ENTRYPOINT ["java"]
+CMD ["-jar", "app.jar"]
+
+# Normal execution:
+docker run my-app:v1.0
+
+# Executes:
+java -jar app.jar
+
+# Override CMD:
+docker run my-app:v1.0 -version
+
+# Executes:
+java -version
+
+# ENTRYPOINT:
+# Defines the main executable.
+
+# CMD:
+# Defines default arguments/command that can be overridden.
+
+
+============================================================
+25. INTERACTIVE CONTAINER
+============================================================
+
+# -i = interactive
+# -t = pseudo-terminal
+
+docker run -it ubuntu bash
+
+# Short form:
+docker run -it ubuntu /bin/bash
+
+# If bash is unavailable:
+docker run -it alpine sh
+
+
+============================================================
+26. RUN BACKGROUND CONTAINER + ACCESS SHELL
+============================================================
+
+# Start container in background
+docker run -dit --name ubuntu-container ubuntu
+
+# Open a shell inside the running container
+docker exec -it ubuntu-container bash
+
+# If bash is unavailable:
+docker exec -it ubuntu-container sh
+
+
+============================================================
+27. LIST RUNNING CONTAINERS
+============================================================
+
+docker ps
+
+# Shows:
+# - Container ID
+# - Image
+# - Command
+# - Created time
+# - Status
+# - Ports
+# - Container name
+
+
+============================================================
+28. LIST ALL CONTAINERS
+============================================================
+
+docker ps -a
+
+# Includes:
+# - Running containers
+# - Stopped containers
+# - Exited containers
+# - Created containers
+
+
+============================================================
+29. INSPECT CONTAINER
+============================================================
+
+docker inspect my-app
+
+# Equivalent:
+docker container inspect my-app
+
+# Useful for:
+# - IP address
+# - Network
+# - Mounts
+# - Environment
+# - Port mappings
+# - Restart policy
+# - Container configuration
+
+
+============================================================
+30. CONTAINER LOGS
+============================================================
+
+# Show logs
+docker logs my-app
+
+# Follow logs continuously
+docker logs -f my-app
+
+# Show last 100 lines
+docker logs --tail 100 my-app
+
+# Show last 100 lines and follow
+docker logs --tail 100 -f my-app
+
+# Show logs from the last 10 minutes
+docker logs --since 10m my-app
+
+# Show timestamps
+docker logs -t my-app
+
+
+============================================================
+31. EXECUTE COMMAND INSIDE RUNNING CONTAINER
+============================================================
+
+# Execute a simple command
+docker exec my-app ls
+
+# Open bash
+docker exec -it my-app bash
+
+# Open sh
+docker exec -it my-app sh
+
+# Check environment variables
+docker exec my-app env
+
+# Check running processes
+docker exec my-app ps
+
+
+============================================================
+32. START / STOP / RESTART CONTAINER
+============================================================
+
+# Stop gracefully
+docker stop my-app
+
+# Start stopped container
+docker start my-app
+
+# Restart container
+docker restart my-app
+
+# Kill immediately
+docker kill my-app
+
+
+============================================================
+33. PAUSE / UNPAUSE CONTAINER
+============================================================
+
+# Pause processes in container
+docker pause my-app
+
+# Resume processes
+docker unpause my-app
+
+
+============================================================
+34. REMOVE CONTAINERS
+============================================================
+
+# Remove stopped container
+docker rm my-app
+
+# Force remove running container
+docker rm -f my-app
+
+# Remove multiple containers
+docker rm container1 container2 container3
+
+# Remove all stopped containers:
+docker container prune
+
+
+============================================================
+35. AUTOMATICALLY REMOVE CONTAINER
+============================================================
+
+# --rm automatically removes the container after it exits
+docker run --rm ubuntu echo "Hello Docker"
+
+# Useful for:
+# - Temporary containers
+# - Testing
+# - One-off commands
+
+
+============================================================
+36. CONTAINER RESOURCE USAGE
+============================================================
+
+# Monitor running containers
+docker stats
+
+# Monitor one container
+docker stats my-app
+
+# Displays:
+# - CPU usage
+# - Memory usage
+# - Network I/O
+# - Block I/O
+# - Number of processes
+
+
+============================================================
+37. LIMIT CONTAINER MEMORY
+============================================================
+
+# Limit memory to 512 MB
+docker run \
+    --memory=512m \
+    my-app:v1.0
+
+# Limit to 1 GB
+docker run \
+    --memory=1g \
+    my-app:v1.0
+
+
+============================================================
+38. LIMIT CONTAINER CPU
+============================================================
+
+# Limit to 2 CPUs
+docker run \
+    --cpus=2 \
+    my-app:v1.0
+
+# Example:
+docker run \
+    --cpus=2 \
+    --memory=1g \
+    my-app:v1.0
+
+
+============================================================
+39. DOCKER VOLUMES
+============================================================
+
+# Create a named volume
+docker volume create app-data
+
+# List volumes
+docker volume ls
+
+# Inspect volume
+docker volume inspect app-data
+
+# Remove volume
+docker volume rm app-data
+
+# Use volume with a container
+docker run \
+    -v app-data:/app/data \
+    my-app:v1.0
+
+# Format:
+# -v VOLUME_NAME:CONTAINER_PATH
+
+
+============================================================
+40. BIND MOUNT
+============================================================
+
+# Mount local directory into container
+docker run \
+    -v $(pwd)/data:/app/data \
+    my-app:v1.0
+
+# Modern --mount syntax:
+docker run \
+    --mount type=bind,source="$(pwd)/data",target=/app/data \
+    my-app:v1.0
+
+# Bind mounts are useful when:
+# - Local files need to be shared with containers
+# - Configuration needs to be changed without rebuilding image
+# - Development hot-reload is required
+
+
+============================================================
+41. READ-ONLY VOLUME / BIND MOUNT
+============================================================
+
+docker run \
+    -v $(pwd)/config:/app/config:ro \
+    my-app:v1.0
+
+# ro = read-only
+
+
+============================================================
+42. DOCKER NETWORKS
+============================================================
+
+# List networks
+docker network ls
+
+# Create custom network
+docker network create app-network
+
+# Inspect network
+docker network inspect app-network
+
+# Remove network
+docker network rm app-network
+
+# Connect existing container to network
+docker network connect app-network my-app
+
+# Disconnect container
+docker network disconnect app-network my-app
+
+
+============================================================
+43. RUN MULTIPLE CONTAINERS ON SAME NETWORK
+============================================================
+
+# Start MySQL
+docker run \
+    -d \
+    --name mysql \
+    --network app-network \
+    -e MYSQL_ROOT_PASSWORD=root \
+    mysql:8
+
+# Start Spring Boot application
+docker run \
+    -d \
+    --name my-app \
+    --network app-network \
+    -p 8080:8080 \
+    -e DB_HOST=mysql \
+    my-app:v1.0
+
+# Application can connect to:
+#
+# mysql:3306
+#
+# Instead of:
+# localhost:3306
+#
+# Docker provides DNS-based service discovery on user-defined networks.
+
+
+============================================================
+44. CHECK CONTAINER PORTS
+============================================================
+
+docker port my-app
+
+# Example output:
+# 8080/tcp -> 0.0.0.0:8080
+
+
+============================================================
+45. SHOW CONTAINER PROCESSES
+============================================================
+
+docker top my-app
+
+
+============================================================
+46. CHECK CONTAINER FILESYSTEM CHANGES
+============================================================
+
+docker diff my-app
+
+# Output meanings:
+# A = Added
+# C = Changed
+# D = Deleted
+
+
+============================================================
+47. COPY FILES BETWEEN HOST AND CONTAINER
+============================================================
+
+# Host -> Container
+docker cp app.properties my-app:/app/app.properties
+
+# Container -> Host
+docker cp my-app:/app/logs/app.log ./app.log
+
+
+============================================================
+48. RENAME CONTAINER
+============================================================
+
+docker rename old-name new-name
+
+
+============================================================
+49. TAG AN IMAGE
+============================================================
+
+# Existing image:
+# my-app:v1.0
+
+# Add Docker Hub repository tag:
+docker tag \
+    my-app:v1.0 \
+    username/my-app:v1.0
+
+# Tag latest:
+docker tag \
+    my-app:v1.0 \
+    username/my-app:latest
+
+# IMPORTANT:
+# docker tag does not create a new image.
+# It creates another reference/tag pointing to the same image.
+
+
+============================================================
+50. PUSH IMAGE TO DOCKER HUB
+============================================================
+
+# Login
+docker login
+
+# Tag image
+docker tag \
+    my-app:v1.0 \
+    username/my-app:v1.0
+
+# Push
+docker push \
+    username/my-app:v1.0
+
+# Push latest
+docker tag \
+    my-app:v1.0 \
+    username/my-app:latest
+
+docker push \
+    username/my-app:latest
+
+
+============================================================
+51. PULL IMAGE
+============================================================
+
+# Pull latest tag
+docker pull nginx
+
+# Pull specific version
+docker pull nginx:1.27
+
+# Pull your application
+docker pull username/my-app:v1.0
+
+
+============================================================
+52. PRIVATE DOCKER REGISTRY
+============================================================
+
+# Login
+docker login registry.example.com
+
+# Tag
+docker tag \
+    my-app:v1.0 \
+    registry.example.com/my-team/my-app:v1.0
+
+# Push
+docker push \
+    registry.example.com/my-team/my-app:v1.0
+
+# Pull
+docker pull \
+    registry.example.com/my-team/my-app:v1.0
+
+
+============================================================
+53. REMOVE DOCKER IMAGES
+============================================================
+
+# Remove image
+docker rmi my-app:v1.0
+
+# Equivalent:
+docker image rm my-app:v1.0
+
+# Force remove
+docker rmi -f my-app:v1.0
+
+# Remove dangling images
+docker image prune
+
+# Remove dangling images without confirmation
+docker image prune -f
+
+# Remove unused images
+docker image prune -a
+
+# WARNING:
+# -a removes images not associated with containers.
+# Review before running on important machines.
+
+
+============================================================
+54. PRUNE CONTAINERS
+============================================================
+
+# Remove stopped containers
+docker container prune
+
+# Skip confirmation
+docker container prune -f
+
+
+============================================================
+55. PRUNE VOLUMES
+============================================================
+
+# Remove unused volumes
+docker volume prune
+
+# WARNING:
+# Volumes may contain persistent application/database data.
+# Always verify before deleting.
+
+
+============================================================
+56. PRUNE NETWORKS
+============================================================
+
+docker network prune
+
+
+============================================================
+57. SYSTEM CLEANUP
+============================================================
+
+# Show disk usage
+docker system df
+
+# Remove unused containers, networks, dangling images, etc.
+docker system prune
+
+# Remove more unused images as well
+docker system prune -a
+
+# Include unused volumes
+docker system prune -a --volumes
+
+# WARNING:
+# These commands can remove resources that you may still need.
+# Never blindly execute aggressive cleanup on production systems.
+
+
+============================================================
+58. SAVE DOCKER IMAGE TO TAR
+============================================================
+
+# Save image to a TAR file
+docker save \
+    -o my-app.tar \
+    my-app:v1.0
+
+# Load image from TAR
+docker load \
+    -i my-app.tar
+
+# Useful for transferring images without a registry.
+
+
+============================================================
+59. EXPORT CONTAINER FILESYSTEM
+============================================================
+
+# Export container filesystem
+docker export my-app > my-app.tar
+
+# Import filesystem as an image
+docker import my-app.tar my-app:backup
+
+IMPORTANT:
+docker save/load
+    -> Works with Docker images and preserves image metadata/layers.
+
+docker export/import
+    -> Works with container filesystem snapshots and does not preserve
+       normal image history/metadata in the same way.
+
+
+============================================================
+60. docker commit
+============================================================
+
+# Create an image from a container
+docker commit \
+    my-app \
+    my-app:backup
+
+# IMPORTANT:
+# docker commit can be useful for debugging/experimentation,
+# but production images should normally be built reproducibly
+# from a Dockerfile and source control.
+
+
+============================================================
+61. DOCKER RESTART POLICIES
+============================================================
+
+# Always restart
+docker run \
+    -d \
+    --restart=always \
+    my-app:v1.0
+
+# Restart unless manually stopped
+docker run \
+    -d \
+    --restart=unless-stopped \
+    my-app:v1.0
+
+# Restart only when container exits with failure
+docker run \
+    -d \
+    --restart=on-failure \
+    my-app:v1.0
+
+Available policies:
+- no
+- always
+- on-failure
+- unless-stopped
+
+
+============================================================
+62. DOCKER HEALTHCHECK
+============================================================
+
+# Example Dockerfile:
+
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY target/app.jar app.jar
+
+EXPOSE 8080
+
+HEALTHCHECK \
+    --interval=30s \
+    --timeout=5s \
+    --start-period=30s \
+    --retries=3 \
+    CMD curl -f http://localhost:8080/actuator/health || exit 1
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Check health:
+docker ps
+
+# Possible status:
+# Up 2 minutes (healthy)
+
+
+============================================================
+63. RUN AS NON-ROOT USER
+============================================================
+
+# Example:
+docker run \
+    --user 1000:1000 \
+    my-app:v1.0
+
+# Running applications as non-root is generally preferable
+# for production containers when the application supports it.
+
+
+============================================================
+64. READ-ONLY ROOT FILESYSTEM
+============================================================
+
+docker run \
+    --read-only \
+    my-app:v1.0
+
+# Useful for reducing the ability of an application to modify
+# the container filesystem.
+
+
+============================================================
+65. DROP LINUX CAPABILITIES
+============================================================
+
+docker run \
+    --cap-drop=ALL \
+    my-app:v1.0
+
+# Security hardening should be tested carefully because some
+# applications require specific Linux capabilities.
+
+
+============================================================
+66. DOCKER LABELS
+============================================================
+
+docker build \
+    --label "version=1.0" \
+    --label "team=backend" \
+    -t my-app:v1.0 \
+    .
+
+# Inspect labels:
+docker inspect my-app:v1.0
+
+
+============================================================
+67. IMAGE TAGGING STRATEGY
+============================================================
+
+# Avoid relying only on :latest.
+
+my-app:1.0.0
+my-app:1.0.1
+my-app:1.1.0
+my-app:2.0.0
+
+# Git SHA example:
+docker build \
+    -t username/my-app:${GIT_COMMIT} \
+    .
+
+# Example:
+# username/my-app:a83f21c
+
+# Git SHA tags are useful for:
+# - CI/CD
+# - Rollbacks
+# - Traceability
+# - Reproducible deployments
+
+
+============================================================
+68. DOCKER BUILDX
+============================================================
+
+# Check Buildx version
+docker buildx version
+
+# List builders
+docker buildx ls
+
+# Create a builder
+docker buildx create --name mybuilder
+
+# Use builder
+docker buildx use mybuilder
+
+# Inspect builder
+docker buildx inspect
+
+
+============================================================
+69. BUILD AND PUSH USING BUILDX
+============================================================
+
+# Build and push directly
+docker buildx build \
+    -t username/my-app:v1.0 \
+    --push \
+    .
+
+# Unlike a normal local build, --push sends the resulting image
+# directly to the registry.
+
+
+============================================================
+70. MULTI-PLATFORM IMAGE
+============================================================
+
+# Build for AMD64 and ARM64:
+docker buildx build \
+    --platform linux/amd64,linux/arm64 \
+    -t username/my-app:v1.0 \
+    --push \
+    .
+
+Useful for:
+- Intel/AMD servers
+- AWS Graviton
+- ARM servers
+- Apple Silicon development machines
+
+
+============================================================
+71. BUILDX --LOAD
+============================================================
+
+# Load Buildx result into the local Docker image store
+docker buildx build \
+    -t my-app:v1.0 \
+    --load \
+    .
+
+# Useful when you want to build with Buildx and then run locally:
+docker run \
+    -d \
+    -p 8080:8080 \
+    my-app:v1.0
+
+
+============================================================
+72. DOCKER COMPOSE
+============================================================
+
+# Example compose.yaml:
+
+services:
+
+  app:
+    image: my-app:v1.0
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: employee
+
+# Start services
+docker compose up
+
+# Start in background
+docker compose up -d
+
+# Build services
+docker compose build
+
+# Build and start
+docker compose up -d --build
+
+# Stop services
+docker compose stop
+
+# Remove services/containers/network created by Compose
+docker compose down
+
+# Remove Compose volumes as well
+docker compose down -v
+
+# Show running services
+docker compose ps
+
+# Show logs
+docker compose logs
+
+# Follow logs
+docker compose logs -f
+
+# Logs for one service
+docker compose logs -f app
+
+# Execute command
+docker compose exec app bash
+
+# Pull service images
+docker compose pull
+
+# Restart services
+docker compose restart
+
+# Validate/resolved configuration
+docker compose config
+
+# Show processes
+docker compose top
+
+# Show service images
+docker compose images
+
+
+============================================================
+73. COMPLETE SPRING BOOT DOCKER WORKFLOW
+============================================================
+
+# Project:
+#
+# employee-service/
+#   src/
+#   pom.xml
+#   target/
+#       employee-service.jar
+#   Dockerfile
+#   .dockerignore
+
+# STEP 1: Build Java application
+./mvnw clean package -DskipTests
+
+# STEP 2: Build Docker image
+docker build \
+    -t employee-service:1.0.0 \
+    .
+
+# STEP 3: Verify image
+docker images
+
+# STEP 4: Run application
+docker run \
+    -d \
+    --name employee-service \
+    -p 8080:8080 \
+    employee-service:1.0.0
+
+# STEP 5: Check container
+docker ps
+
+# STEP 6: View logs
+docker logs -f employee-service
+
+# STEP 7: Test application
+# http://localhost:8080
+
+# STEP 8: Stop application
+docker stop employee-service
+
+# STEP 9: Remove container
+docker rm employee-service
+
+
+============================================================
+74. COMPLETE DOCKER HUB WORKFLOW
+============================================================
+
+# STEP 1: Build Java application
+./mvnw clean package -DskipTests
+
+# STEP 2: Build Docker image
+docker build \
+    -t employee-service:1.0.0 \
+    .
+
+# STEP 3: Login
+docker login
+
+# STEP 4: Tag for Docker Hub
+docker tag \
+    employee-service:1.0.0 \
+    username/employee-service:1.0.0
+
+# STEP 5: Push image
+docker push \
+    username/employee-service:1.0.0
+
+# STEP 6: Pull image on another server
+docker pull \
+    username/employee-service:1.0.0
+
+# STEP 7: Run application
+docker run \
+    -d \
+    --name employee-service \
+    -p 8080:8080 \
+    --restart=unless-stopped \
+    username/employee-service:1.0.0
+
+# STEP 8: Check
+docker ps
+
+# STEP 9: Logs
+docker logs -f employee-service
+
+
+============================================================
+75. COMPLETE BUILD -> TAG -> PUSH -> PULL -> RUN FLOW
+============================================================
+
+# Build
+docker build -t my-app:v1.0 .
+
+# Verify
+docker images
+
+# Login
+docker login
+
+# Tag
+docker tag \
+    my-app:v1.0 \
+    username/my-app:v1.0
+
+# Push
+docker push \
+    username/my-app:v1.0
+
+# Pull on another machine
+docker pull \
+    username/my-app:v1.0
+
+# Run
+docker run \
+    -d \
+    --name my-app \
+    -p 8080:8080 \
+    username/my-app:v1.0
+
+# Verify
+docker ps
+
+# Logs
+docker logs -f my-app
+
+
+============================================================
+76. COMPLETE PRODUCTION-STYLE COMMAND
+============================================================
+
+# Build
+docker build \
+    --pull \
+    --no-cache \
+    -t username/my-app:1.0.0 \
+    .
+
+# Push
+docker push username/my-app:1.0.0
+
+# Run with:
+# - Detached mode
+# - Name
+# - Port mapping
+# - Environment profile
+# - Restart policy
+# - Resource limits
+
+docker run \
+    -d \
+    --name my-app \
+    -p 8080:8080 \
+    -e SPRING_PROFILES_ACTIVE=prod \
+    --restart=unless-stopped \
+    --memory=1g \
+    --cpus=2 \
+    username/my-app:1.0.0
+
+# Check
+docker ps
+
+# Monitor
+docker stats my-app
+
+# Logs
+docker logs --tail 100 -f my-app
+
+
+============================================================
+77. COMMON DOCKER DEBUGGING FLOW
+============================================================
+
+# 1. Is the container running?
+docker ps -a
+
+# 2. Check logs
+docker logs my-app
+
+# 3. Follow logs
+docker logs -f my-app
+
+# 4. Inspect container
+docker inspect my-app
+
+# 5. Check processes
+docker top my-app
+
+# 6. Check resource consumption
+docker stats my-app
+
+# 7. Enter the container
+docker exec -it my-app sh
+
+# or
+docker exec -it my-app bash
+
+# 8. Check environment variables
+docker exec my-app env
+
+# 9. Check ports
+docker port my-app
+
+# 10. Check network
+docker network inspect app-network
+
+
+============================================================
+78. COMMON DOCKER COMMANDS TO MEMORIZE
+============================================================
+
+BUILD:
+docker build
+docker buildx build
+
+IMAGES:
+docker images
+docker image ls
+docker image inspect
+docker history
+docker rmi
+
+CONTAINERS:
+docker run
+docker ps
+docker ps -a
+docker inspect
+docker logs
+docker exec
+docker stats
+docker top
+docker stop
+docker start
+docker restart
+docker kill
+docker rm
+
+REGISTRY:
+docker login
+docker tag
+docker push
+docker pull
+
+NETWORK:
+docker network ls
+docker network create
+docker network inspect
+docker network connect
+docker network disconnect
+docker network rm
+
+VOLUME:
+docker volume ls
+docker volume create
+docker volume inspect
+docker volume rm
+docker volume prune
+
+CLEANUP:
+docker container prune
+docker image prune
+docker network prune
+docker volume prune
+docker system df
+docker system prune
+
+TRANSFER:
+docker save
+docker load
+docker export
+docker import
+
+COMPOSE:
+docker compose up
+docker compose down
+docker compose ps
+docker compose logs
+docker compose exec
+docker compose build
+docker compose pull
+
+ADVANCED:
+docker buildx ls
+docker buildx create
+docker buildx use
+docker buildx inspect
+docker buildx build
+
+
+============================================================
+79. DOCKER COMMAND LIFECYCLE - INTERVIEW VIEW
+============================================================
+
+                 DOCKERFILE
+                     |
+                     | docker build
+                     v
+                DOCKER IMAGE
+                     |
+             +-------+-------+
+             |               |
+         docker tag      docker save
+             |               |
+         docker push      docker load
+             |
+             v
+          REGISTRY
+             |
+         docker pull
+             |
+             v
+          DOCKER IMAGE
+             |
+         docker run
+             |
+             v
+       DOCKER CONTAINER
+             |
+     +-------+--------+---------+
+     |       |        |         |
+ docker logs exec   inspect   stats
+     |
+ docker stop
+     |
+ docker rm
+
+
+============================================================
+80. IMPORTANT DIFFERENCES
+============================================================
+
+docker build
+    -> Creates an image from a Dockerfile.
+
+docker run
+    -> Creates and starts a new container from an image.
+
+docker start
+    -> Starts an existing stopped container.
+
+docker stop
+    -> Gracefully stops a running container.
+
+docker restart
+    -> Restarts an existing container.
+
+docker kill
+    -> Immediately terminates a container.
+
+docker rm
+    -> Removes a container.
+
+docker rmi
+    -> Removes an image.
+
+docker pull
+    -> Downloads an image from a registry.
+
+docker push
+    -> Uploads an image to a registry.
+
+docker tag
+    -> Creates another tag/reference for an image.
+
+docker exec
+    -> Executes a command inside a running container.
+
+docker logs
+    -> Displays container output/logs.
+
+docker inspect
+    -> Displays detailed metadata.
+
+docker save
+    -> Saves an image to a TAR archive.
+
+docker load
+    -> Loads an image from a TAR archive.
+
+docker export
+    -> Exports a container filesystem.
+
+docker import
+    -> Creates an image from an exported filesystem.
+
+docker compose
+    -> Manages multi-container applications.
+
+docker buildx
+    -> Advanced builds, including multi-platform builds.
+
+
+============================================================
+81. QUICK REFERENCE
+============================================================
+
+# Build
+docker build -t my-app:v1.0 .
+
+# Build with another Dockerfile
+docker build -f ./config/production.Dockerfile -t my-app:prod .
+
+# Build argument
+docker build --build-arg API_VERSION=2.0 -t my-app:v2.0 .
+
+# Build without cache
+docker build --no-cache -t my-app:v1.0 .
+
+# List images
+docker images
+
+# Run
+docker run -d -p 8080:8080 --name my-app my-app:v1.0
+
+# List containers
+docker ps
+docker ps -a
+
+# Logs
+docker logs -f my-app
+
+# Shell
+docker exec -it my-app bash
+
+# Stop
+docker stop my-app
+
+# Start
+docker start my-app
+
+# Restart
+docker restart my-app
+
+# Remove container
+docker rm my-app
+
+# Tag
+docker tag my-app:v1.0 username/my-app:v1.0
+
+# Login
+docker login
+
+# Push
+docker push username/my-app:v1.0
+
+# Pull
+docker pull username/my-app:v1.0
+
+# Inspect image
+docker image inspect my-app:v1.0
+
+# Inspect container
+docker inspect my-app
+
+# Resource usage
+docker stats
+
+# Networks
+docker network ls
+
+# Volumes
+docker volume ls
+
+# Disk usage
+docker system df
+
+# Cleanup
+docker system prune
+
+# Compose
+docker compose up -d
+docker compose down
+
+# Buildx
+docker buildx build --platform linux/amd64,linux/arm64 \
+    -t username/my-app:v1.0 --push .
+
+
+============================================================
+82. KEY DOCKER INTERVIEW QUESTIONS TO KNOW
+============================================================
+
+1. What is the difference between an image and a container?
+2. What is a Dockerfile?
+3. What is a Docker build context?
+4. What is the difference between ARG and ENV?
+5. What is the difference between ENTRYPOINT and CMD?
+6. What is the difference between COPY and ADD?
+7. What is a Docker volume?
+8. What is a bind mount?
+9. How do Docker containers communicate?
+10. What is a Docker network?
+11. What is the difference between docker stop and docker kill?
+12. What is the difference between docker run and docker start?
+13. What is the difference between docker save and docker export?
+14. What is Docker Compose?
+15. What is Docker Buildx?
+16. How do you reduce Docker image size?
+17. How do you secure a Docker container?
+18. How do you pass configuration to a Spring Boot container?
+19. How do you expose a Spring Boot port?
+20. How do you push an image to Docker Hub?
+21. How do you roll back to a previous Docker image?
+22. How do you debug a container that keeps restarting?
+23. How do you limit CPU and memory?
+24. How do you build multi-platform images?
+25. How do you implement Docker in CI/CD?
+
+
+============================================================
+83. BEST PRACTICES
+============================================================
+
+# 1. Use small base images when appropriate.
+# 2. Use multi-stage Docker builds for compiled applications.
+# 3. Use .dockerignore.
+# 4. Do not store secrets in Dockerfiles.
+# 5. Prefer environment/runtime configuration for deployment settings.
+# 6. Avoid running applications as root.
+# 7. Use explicit image versions rather than relying only on latest.
+# 8. Keep containers focused on one primary responsibility.
+# 9. Use health checks for services where appropriate.
+# 10. Configure restart policies for appropriate workloads.
+# 11. Monitor CPU and memory usage.
+# 12. Scan images for vulnerabilities in CI/CD.
+# 13. Use immutable/versioned image tags for deployments.
+# 14. Use multi-stage builds to reduce final image size.
+# 15. Keep Dockerfiles reproducible and version-controlled.
+# 16. Do not use docker commit as the normal production build process.
+# 17. Clean up unused Docker resources carefully.
+# 18. Use Docker Compose for local multi-service development.
+# 19. Use Buildx for multi-platform builds.
+# 20. Use a private registry for controlled production deployments.
+
+
+============================================================
+END OF DOCKER COMPLETE COMMAND CHEAT SHEET
+============================================================
