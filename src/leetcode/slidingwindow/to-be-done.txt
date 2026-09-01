@@ -1,0 +1,421 @@
+## 🔥 Sliding Window — LeetCode Mastery Roadmap
+
+### 🟢 Level 1 — Foundation
+
+Start with these to understand fixed vs variable windows.
+
+| # | LeetCode | Problem                                                 | Difficulty |
+| - | -------- | ------------------------------------------------------- | ---------- |
+| 1 | **643**  | Maximum Average Subarray I                              | Easy       |
+| 2 | **1456** | Maximum Number of Vowels in a Substring of Given Length | Medium     |
+| 3 | **1343** | Number of Sub-arrays of Size K and Average ≥ Threshold  | Medium     |
+| 4 | **1876** | Substrings of Size Three with Distinct Characters       | Easy       |
+| 5 | **209**  | Minimum Size Subarray Sum                               | Medium     |
+| 6 | **219**  | Contains Duplicate II                                   | Easy       |
+| 7 | **1052** | Grumpy Bookstore Owner                                  | Medium     |
+
+=======================================================================================
+**Goal:** Master the basic::::::::
+expand right
+update window
+shrink left
+maintain answer
+
+========================================================================================
+# 🟡 Level 2 — Variable Window
+
+These are **must-do** questions.
+
+| #  | LeetCode | Problem                                            | Difficulty |
+| -- | -------- | -------------------------------------------------- | ---------- |
+| 8  | **3**    | Longest Substring Without Repeating Characters     | Medium     |
+| 9  | **904**  | Fruit Into Baskets                                 | Medium     |
+| 10 | **1004** | Max Consecutive Ones III                           | Medium     |
+| 11 | **1493** | Longest Subarray of 1's After Deleting One Element | Medium     |
+| 12 | **1208** | Get Equal Substrings Within Budget                 | Medium     |
+| 13 | **2024** | Maximize the Confusion of an Exam                  | Medium     |
+| 14 | **424**  | Longest Repeating Character Replacement            | Medium     |
+| 15 | **1695** | Maximum Erasure Value                              | Medium     |
+| 16 | **2461** | Maximum Sum of Distinct Subarrays With Length K    | Medium     |
+
+===================================================================================
+
+### 🎯 Pattern you should recognize
+
+For example:
+
+**LC 3**
+Longest + condition violated
+        ↓
+expand right
+        ↓
+if invalid → move left
+        ↓
+maximize window
+
+
+This pattern appears constantly in interviews.
+
+---
+
+# 🟠 Level 3 — Frequency Map Sliding Window
+
+Now start working with `HashMap<Character, Integer>` / frequency counting.
+
+| #  | LeetCode | Problem                                                | Difficulty |
+| -- | -------- | ------------------------------------------------------ | ---------- |
+| 17 | **567**  | Permutation in String                                  | Medium     |
+| 18 | **438**  | Find All Anagrams in a String                          | Medium     |
+| 19 | **30**   | Substring with Concatenation of All Words              | Hard       |
+| 20 | **76**   | Minimum Window Substring                               | Hard       |
+| 21 | **395**  | Longest Substring with At Least K Repeating Characters | Medium     |
+| 22 | **340**  | Longest Substring with At Most K Distinct Characters   | Medium*    |
+| 23 | **159**  | Longest Substring with At Most Two Distinct Characters | Medium*    |
+
+*These are LeetCode variants that are sometimes encountered through equivalent/problem-archive formulations.
+
+### 🚨 Extremely important
+
+**LC 76 — Minimum Window Substring**
+
+If you can solve this comfortably without looking at the solution, your sliding-window fundamentals are becoming strong.
+
+You need to understand:
+
+```text
+required frequency
+current frequency
+formed / matched count
+expand
+contract
+minimum answer
+```
+
+---
+
+# 🔴 Level 4 — Counting Subarrays
+
+This is where many candidates get stuck.
+
+| #  | LeetCode | Problem                                              | Difficulty |
+| -- | -------- | ---------------------------------------------------- | ---------- |
+| 24 | **930**  | Binary Subarrays With Sum                            | Medium     |
+| 25 | **992**  | Subarrays with K Different Integers                  | Hard       |
+| 26 | **1248** | Count Number of Nice Subarrays                       | Medium     |
+| 27 | **1358** | Number of Substrings Containing All Three Characters | Medium     |
+| 28 | **1004** | Max Consecutive Ones III                             | Medium     |
+| 29 | **2062** | Count Vowel Substrings of a String                   | Medium     |
+| 30 | **2799** | Count Complete Subarrays in an Array                 | Medium     |
+
+### 🔑 Important concept
+
+Learn this transformation:
+
+```text
+exactly(K)
+    =
+atMost(K) - atMost(K - 1)
+```
+
+This is **extremely important for interviews**.
+
+You'll see it in:
+
+* LC 992
+* LC 1248
+* many variations of "exactly K"
+
+---
+
+# 🟣 Level 5 — Advanced Sliding Window
+
+Now solve problems where the window isn't just maintained with a simple frequency map.
+
+| #  | LeetCode | Problem                                                | Difficulty |
+| -- | -------- | ------------------------------------------------------ | ---------- |
+| 31 | **239**  | Sliding Window Maximum                                 | Hard       |
+| 32 | **1438** | Longest Continuous Subarray With Absolute Diff ≤ Limit | Medium     |
+| 33 | **862**  | Shortest Subarray with Sum at Least K                  | Hard       |
+| 34 | **1499** | Max Value of Equation                                  | Hard       |
+| 35 | **1425** | Constrained Subsequence Sum                            | Hard       |
+| 36 | **1696** | Jump Game VI                                           | Medium     |
+| 37 | **480**  | Sliding Window Median                                  | Hard       |
+
+These introduce:
+
+```text
+Deque
+Monotonic Queue
+Heap
+Prefix Sum + Deque
+Balanced data structure
+```
+
+---
+
+# 💀 Level 6 — MANGA/FAANG Hard
+
+If you're targeting **Google / Meta / Amazon / Microsoft / Uber / Netflix-level interviews**, do these.
+
+| #  | LeetCode | Problem                                                | Difficulty |
+| -- | -------- | ------------------------------------------------------ | ---------- |
+| 38 | **76**   | Minimum Window Substring                               | Hard       |
+| 39 | **30**   | Substring with Concatenation of All Words              | Hard       |
+| 40 | **239**  | Sliding Window Maximum                                 | Hard       |
+| 41 | **480**  | Sliding Window Median                                  | Hard       |
+| 42 | **862**  | Shortest Subarray with Sum at Least K                  | Hard       |
+| 43 | **992**  | Subarrays with K Different Integers                    | Hard       |
+| 44 | **1438** | Longest Continuous Subarray With Absolute Diff ≤ Limit | Medium     |
+| 45 | **1499** | Max Value of Equation                                  | Hard       |
+| 46 | **1425** | Constrained Subsequence Sum                            | Hard       |
+| 47 | **354**  | Russian Doll Envelopes*                                | Hard       |
+
+---
+
+# 🧠 The Patterns You MUST Master
+
+Don't just memorize the solutions. After completing the problems, you should be able to identify these patterns immediately.
+
+### Pattern 1 — Fixed Window
+
+```text
+window size = K
+```
+
+Examples:
+
+* 643
+* 1456
+* 1343
+* 1052
+
+---
+
+### Pattern 2 — Longest Valid Window
+
+```text
+while window is invalid:
+    left++
+
+answer = max(answer, window)
+```
+
+Examples:
+
+* 3
+* 424
+* 904
+* 1004
+* 1208
+
+---
+
+### Pattern 3 — Shortest Valid Window
+
+```text
+while window is valid:
+    answer = min(answer, window)
+    left++
+```
+
+Examples:
+
+* **209**
+* **76**
+
+---
+
+### Pattern 4 — Frequency Matching
+
+```text
+HashMap
+    ↓
+required frequency
+    ↓
+current frequency
+    ↓
+matched count
+```
+
+Examples:
+
+* 567
+* 438
+* 76
+* 30
+
+---
+
+### Pattern 5 — At Most K
+
+```text
+atMost(K)
+```
+
+Examples:
+
+* 904
+* 992
+* 340
+* 159
+
+---
+
+### Pattern 6 — Exactly K
+
+```text
+exactly(K)
+=
+atMost(K) - atMost(K - 1)
+```
+
+Examples:
+
+* 992
+* 1248
+* similar "exactly K" counting problems
+
+---
+
+### Pattern 7 — Monotonic Deque
+
+```text
+Deque
+ ↓
+maintain maximum/minimum
+ ↓
+remove expired elements
+```
+
+Examples:
+
+* **239**
+* **1438**
+* **862**
+
+---
+
+# 🏆 My Recommended 30-Question Set
+
+If you don't want to solve all 40+, **these 30 are enough for serious mastery**:
+
+```text
+643
+1456
+1343
+209
+219
+
+3
+904
+1004
+1493
+1208
+2024
+424
+1695
+2461
+
+567
+438
+395
+76
+30
+
+930
+992
+1248
+1358
+2799
+
+239
+1438
+862
+1499
+1425
+480
+```
+
+## ⭐ Priority Ranking
+
+If you have limited time:
+
+### MUST SOLVE
+
+```text
+3
+209
+424
+904
+1004
+567
+438
+76
+930
+992
+1248
+239
+1438
+862
+```
+
+### VERY IMPORTANT
+
+```text
+1456
+1208
+2024
+1695
+2461
+1358
+30
+480
+```
+
+### ADVANCED
+
+```text
+239
+862
+1499
+1425
+480
+```
+
+---
+
+## 🚀 How I recommend you practice
+
+For each problem, **don't immediately code**.
+
+Use this process:
+
+```text
+1. Identify:
+   Fixed Window OR Variable Window?
+
+2. What makes the window INVALID?
+
+3. What information must I maintain?
+   sum?
+   frequency?
+   distinct count?
+   matched count?
+   max/min?
+
+4. When do I move right?
+
+5. When do I move left?
+
+6. Is the question asking:
+   maximum?
+   minimum?
+   count?
+
+7. Can "exactly K" be converted to:
+   atMost(K) - atMost(K-1)?
+```
+
+If you can answer those **before writing Java code**, you've genuinely learned sliding window rather than memorized solutions.
+
+**Target:** Solve the 30-question set in the order above. Once you can solve them independently in **20–30 minutes each**, sliding window should be one of your strongest interview patterns.
