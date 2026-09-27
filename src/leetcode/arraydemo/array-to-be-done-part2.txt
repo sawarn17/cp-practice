@@ -1,0 +1,744 @@
+Absolutely. For **Microsoft-style DSA preparation**, you should not solve random array problems. You should cover arrays **pattern-by-pattern**, with enough LeetCode problems to recognize the underlying technique quickly.
+
+Here’s a structured **Array → Microsoft interview roadmap**, from fundamentals to hard interview patterns.
+
+## 🧠 Array Patterns Roadmap
+
+| #  | Pattern                        | Problems | Priority |
+| -- | ------------------------------ | -------: | -------- |
+| 1  | Basic Traversal / Simulation   |        8 | ⭐⭐       |
+| 2  | Hashing / Frequency            |       10 | ⭐⭐⭐⭐⭐    |
+| 3  | Two Pointers                   |       12 | ⭐⭐⭐⭐⭐    |
+| 4  | Sliding Window                 |       10 | ⭐⭐⭐⭐⭐    |
+| 5  | Prefix Sum                     |       10 | ⭐⭐⭐⭐⭐    |
+| 6  | Difference Array               |        3 | ⭐⭐⭐      |
+| 7  | Kadane / Subarray Optimization |        6 | ⭐⭐⭐⭐⭐    |
+| 8  | Sorting + Arrays               |        8 | ⭐⭐⭐⭐     |
+| 9  | Binary Search on Arrays        |       12 | ⭐⭐⭐⭐⭐    |
+| 10 | Intervals                      |        8 | ⭐⭐⭐⭐⭐    |
+| 11 | Cyclic Sort / Index Placement  |        5 | ⭐⭐⭐⭐     |
+| 12 | Monotonic Stack                |       10 | ⭐⭐⭐⭐⭐    |
+| 13 | Heap + Arrays                  |        7 | ⭐⭐⭐⭐     |
+| 14 | Greedy + Arrays                |        8 | ⭐⭐⭐⭐     |
+| 15 | Matrix / 2D Arrays             |       10 | ⭐⭐⭐⭐     |
+| 16 | Subarray + HashMap             |        8 | ⭐⭐⭐⭐⭐    |
+| 17 | Advanced Array Techniques      |       10 | ⭐⭐⭐⭐     |
+
+That's roughly **140 problems**, but you don't need to blindly solve all 140. The goal is to master the patterns.
+
+---
+
+# 1. Basic Array Traversal & Simulation
+
+Start here if you're building fundamentals.
+
+1. **LC 1 — Two Sum**
+2. **LC 27 — Remove Element**
+3. **LC 26 — Remove Duplicates from Sorted Array**
+4. **LC 189 — Rotate Array**
+5. **LC 268 — Missing Number**
+6. **LC 485 — Max Consecutive Ones**
+7. **LC 414 — Third Maximum Number**
+8. **LC 724 — Find Pivot Index**
+
+### Pattern to learn
+
+```text
+Traversal
+Index manipulation
+In-place modification
+Maintain min/max/state
+```
+
+---
+
+# 2. Hashing / Frequency Counting
+
+This is one of the most important array patterns.
+
+### Must solve
+
+1. **LC 1 — Two Sum**
+2. **LC 217 — Contains Duplicate**
+3. **LC 219 — Contains Duplicate II**
+4. **LC 49 — Group Anagrams**
+5. **LC 347 — Top K Frequent Elements**
+6. **LC 128 — Longest Consecutive Sequence**
+7. **LC 380 — Insert Delete GetRandom O(1)**
+8. **LC 442 — Find All Duplicates in an Array**
+9. **LC 560 — Subarray Sum Equals K**
+10. **LC 525 — Contiguous Array**
+
+### Recognition
+
+If you see:
+
+> "Have we seen this before?"
+
+Think:
+
+**HashMap / HashSet**
+
+---
+
+# 3. Two Pointers ⭐⭐⭐⭐⭐
+
+Very important for Microsoft interviews.
+
+### Core set
+
+1. **LC 125 — Valid Palindrome**
+2. **LC 167 — Two Sum II**
+3. **LC 15 — 3Sum**
+4. **LC 18 — 4Sum**
+5. **LC 11 — Container With Most Water**
+6. **LC 42 — Trapping Rain Water**
+7. **LC 26 — Remove Duplicates from Sorted Array**
+8. **LC 27 — Remove Element**
+9. **LC 283 — Move Zeroes**
+10. **LC 344 — Reverse String**
+11. **LC 977 — Squares of a Sorted Array**
+12. **LC 75 — Sort Colors**
+
+### Recognition
+
+Usually:
+
+```text
+sorted array
+left + right
+find pair
+remove duplicates
+partition
+move elements
+```
+
+Think:
+
+**Two Pointers**
+
+---
+
+# 4. Sliding Window ⭐⭐⭐⭐⭐
+
+One of the highest-value patterns.
+
+### Fixed Window
+
+1. **LC 643 — Maximum Average Subarray I**
+2. **LC 1456 — Maximum Number of Vowels in a Substring of Given Length**
+3. **LC 1343 — Number of Sub-arrays of Size K and Average ≥ Threshold**
+
+### Variable Window
+
+4. **LC 3 — Longest Substring Without Repeating Characters**
+5. **LC 209 — Minimum Size Subarray Sum**
+6. **LC 1004 — Max Consecutive Ones III**
+7. **LC 904 — Fruit Into Baskets**
+8. **LC 424 — Longest Repeating Character Replacement**
+9. **LC 713 — Subarray Product Less Than K**
+10. **LC 76 — Minimum Window Substring**
+
+### Recognition
+
+If you see:
+
+```text
+longest
+shortest
+subarray
+substring
+contiguous
+at most K
+at least K
+window of size K
+```
+
+Think:
+
+**Sliding Window**
+
+---
+
+# 5. Prefix Sum ⭐⭐⭐⭐⭐
+
+Extremely important.
+
+### Problems
+
+1. **LC 303 — Range Sum Query - Immutable**
+2. **LC 724 — Find Pivot Index**
+3. **LC 1480 — Running Sum of 1d Array**
+4. **LC 560 — Subarray Sum Equals K**
+5. **LC 523 — Continuous Subarray Sum**
+6. **LC 525 — Contiguous Array**
+7. **LC 930 — Binary Subarrays With Sum**
+8. **LC 974 — Subarray Sums Divisible by K**
+9. **LC 238 — Product of Array Except Self**
+10. **LC 304 — Range Sum Query 2D**
+
+### Core idea
+
+Instead of repeatedly calculating:
+
+```text
+sum(i...j)
+```
+
+precompute:
+
+```text
+prefix[j] - prefix[i-1]
+```
+
+---
+
+# 6. Difference Array
+
+Smaller pattern, but useful.
+
+1. **LC 1094 — Car Pooling**
+2. **LC 1109 — Corporate Flight Bookings**
+3. **LC 370 — Range Addition** *(Premium)*
+
+### Recognition
+
+If the problem says:
+
+> Apply many range updates.
+
+Think:
+
+**Difference Array + Prefix Sum**
+
+---
+
+# 7. Kadane's Algorithm / Maximum Subarray ⭐⭐⭐⭐⭐
+
+You should be able to implement this without thinking.
+
+1. **LC 53 — Maximum Subarray**
+2. **LC 918 — Maximum Sum Circular Subarray**
+3. **LC 152 — Maximum Product Subarray**
+4. **LC 121 — Best Time to Buy and Sell Stock**
+5. **LC 122 — Best Time to Buy and Sell Stock II**
+6. **LC 123 — Best Time to Buy and Sell Stock III**
+
+### Recognition
+
+Questions involving:
+
+```text
+maximum subarray
+maximum sum
+best profit
+contiguous sequence
+```
+
+often lead to **Kadane / DP**.
+
+---
+
+# 8. Sorting + Arrays
+
+### Problems
+
+1. **LC 56 — Merge Intervals**
+2. **LC 57 — Insert Interval**
+3. **LC 88 — Merge Sorted Array**
+4. **LC 179 — Largest Number**
+5. **LC 274 — H-Index**
+6. **LC 324 — Wiggle Sort II**
+7. **LC 75 — Sort Colors**
+8. **LC 128 — Longest Consecutive Sequence**
+
+### Key skill
+
+Before solving an array problem, ask:
+
+> "Would sorting simplify the problem?"
+
+But remember that sorting costs:
+
+```text
+O(n log n)
+```
+
+---
+
+# 9. Binary Search on Arrays ⭐⭐⭐⭐⭐
+
+This is **critical** for Microsoft.
+
+### Basic
+
+1. **LC 704 — Binary Search**
+2. **LC 35 — Search Insert Position**
+3. **LC 34 — Find First and Last Position**
+4. **LC 69 — Sqrt(x)**
+
+### Rotated arrays
+
+5. **LC 33 — Search in Rotated Sorted Array**
+6. **LC 81 — Search in Rotated Sorted Array II**
+7. **LC 153 — Find Minimum in Rotated Sorted Array**
+8. **LC 154 — Find Minimum in Rotated Sorted Array II**
+
+### Binary search on answer
+
+9. **LC 875 — Koko Eating Bananas**
+10. **LC 1011 — Capacity To Ship Packages Within D Days**
+11. **LC 410 — Split Array Largest Sum**
+12. **LC 774 — Minimize Max Distance to Gas Station** *(Premium)*
+
+### Recognition
+
+If the answer has a monotonic property:
+
+```text
+possible(x)
+```
+
+then:
+
+```text
+binary search on x
+```
+
+---
+
+# 10. Intervals ⭐⭐⭐⭐⭐
+
+Microsoft can test this pattern in many forms.
+
+### Problems
+
+1. **LC 56 — Merge Intervals**
+2. **LC 57 — Insert Interval**
+3. **LC 252 — Meeting Rooms** *(Premium)*
+4. **LC 253 — Meeting Rooms II** *(Premium)*
+5. **LC 435 — Non-overlapping Intervals**
+6. **LC 452 — Minimum Number of Arrows to Burst Balloons**
+7. **LC 986 — Interval List Intersections**
+8. **LC 1288 — Remove Covered Intervals**
+
+### Standard approach
+
+Usually:
+
+```text
+sort by start
+↓
+iterate
+↓
+merge / detect overlap
+```
+
+---
+
+# 11. Cyclic Sort / Index Placement
+
+Very useful for questions involving numbers from `1...n`.
+
+1. **LC 268 — Missing Number**
+2. **LC 287 — Find the Duplicate Number**
+3. **LC 41 — First Missing Positive**
+4. **LC 442 — Find All Duplicates in an Array**
+5. **LC 448 — Find All Numbers Disappeared in an Array**
+
+### Recognition
+
+If you see:
+
+```text
+numbers 1 to n
+missing
+duplicate
+appears twice
+find disappeared numbers
+```
+
+Think:
+
+**Index ↔ Value**
+
+---
+
+# 12. Monotonic Stack ⭐⭐⭐⭐⭐
+
+This is a major interview pattern.
+
+### Problems
+
+1. **LC 496 — Next Greater Element I**
+2. **LC 503 — Next Greater Element II**
+3. **LC 739 — Daily Temperatures**
+4. **LC 901 — Online Stock Span**
+5. **LC 84 — Largest Rectangle in Histogram**
+6. **LC 85 — Maximal Rectangle**
+7. **LC 42 — Trapping Rain Water**
+8. **LC 402 — Remove K Digits**
+9. **LC 456 — 132 Pattern**
+10. **LC 907 — Sum of Subarray Minimums**
+
+### Recognition
+
+If the question asks:
+
+```text
+next greater
+next smaller
+previous greater
+previous smaller
+nearest greater/smaller
+```
+
+Think:
+
+**Monotonic Stack**
+
+---
+
+# 13. Heap + Arrays
+
+### Problems
+
+1. **LC 215 — Kth Largest Element in an Array**
+2. **LC 347 — Top K Frequent Elements**
+3. **LC 373 — Find K Pairs with Smallest Sums**
+4. **LC 378 — Kth Smallest Element in a Sorted Matrix**
+5. **LC 692 — Top K Frequent Words**
+6. **LC 973 — K Closest Points to Origin**
+7. **LC 703 — Kth Largest Element in a Stream**
+
+### Recognition
+
+Look for:
+
+```text
+Top K
+Kth largest
+Kth smallest
+closest K
+most frequent K
+```
+
+Think:
+
+**Heap**
+
+---
+
+# 14. Greedy + Arrays
+
+### Problems
+
+1. **LC 55 — Jump Game**
+2. **LC 45 — Jump Game II**
+3. **LC 134 — Gas Station**
+4. **LC 135 — Candy**
+5. **LC 406 — Queue Reconstruction by Height**
+6. **LC 435 — Non-overlapping Intervals**
+7. **LC 452 — Minimum Number of Arrows**
+8. **LC 763 — Partition Labels**
+
+### Core question
+
+Ask:
+
+> "Can I make the locally optimal choice while preserving the possibility of a global optimum?"
+
+---
+
+# 15. Matrix / 2D Arrays ⭐⭐⭐⭐
+
+Don't neglect these.
+
+### Problems
+
+1. **LC 48 — Rotate Image**
+2. **LC 54 — Spiral Matrix**
+3. **LC 59 — Spiral Matrix II**
+4. **LC 73 — Set Matrix Zeroes**
+5. **LC 289 — Game of Life**
+6. **LC 36 — Valid Sudoku**
+7. **LC 240 — Search a 2D Matrix II**
+8. **LC 74 — Search a 2D Matrix**
+9. **LC 304 — Range Sum Query 2D**
+10. **LC 200 — Number of Islands**
+
+---
+
+# 16. Subarray + HashMap ⭐⭐⭐⭐⭐
+
+This deserves its own category because it's a common interview trap.
+
+### Problems
+
+1. **LC 560 — Subarray Sum Equals K**
+2. **LC 525 — Contiguous Array**
+3. **LC 523 — Continuous Subarray Sum**
+4. **LC 974 — Subarray Sums Divisible by K**
+5. **LC 930 — Binary Subarrays With Sum**
+6. **LC 1248 — Count Number of Nice Subarrays**
+7. **LC 1590 — Make Sum Divisible by P**
+8. **LC 437 — Path Sum III** *(tree variation)*
+
+### Key transformation
+
+Many of these reduce to:
+
+```text
+currentPrefixSum - previousPrefixSum = target
+```
+
+Then use a HashMap.
+
+---
+
+# 17. Advanced Array Patterns
+
+Once you've completed the above:
+
+### Product / prefix-suffix
+
+* **LC 238 — Product of Array Except Self**
+
+### Divide & conquer
+
+* **LC 315 — Count of Smaller Numbers After Self**
+* **LC 493 — Reverse Pairs**
+
+### Quickselect
+
+* **LC 215 — Kth Largest Element**
+* **LC 973 — K Closest Points**
+
+### Advanced two pointers
+
+* **LC 42 — Trapping Rain Water**
+* **LC 11 — Container With Most Water**
+
+### Advanced prefix techniques
+
+* **LC 862 — Shortest Subarray with Sum at Least K**
+* **LC 327 — Count of Range Sum**
+
+---
+
+# 🎯 The Microsoft-Focused 50
+
+If **140 problems feels too much**, do these first.
+
+### Tier 1 — Absolutely master
+
+1. LC 1 — Two Sum
+2. LC 53 — Maximum Subarray
+3. LC 121 — Best Time to Buy/Sell Stock
+4. LC 122 — Best Time to Buy/Sell Stock II
+5. LC 238 — Product of Array Except Self
+6. LC 15 — 3Sum
+7. LC 11 — Container With Most Water
+8. LC 42 — Trapping Rain Water
+9. LC 3 — Longest Substring Without Repeating Characters
+10. LC 209 — Minimum Size Subarray Sum
+11. LC 76 — Minimum Window Substring
+12. LC 560 — Subarray Sum Equals K
+13. LC 128 — Longest Consecutive Sequence
+14. LC 75 — Sort Colors
+15. LC 56 — Merge Intervals
+16. LC 57 — Insert Interval
+17. LC 55 — Jump Game
+18. LC 45 — Jump Game II
+19. LC 704 — Binary Search
+20. LC 33 — Search in Rotated Sorted Array
+
+### Tier 2
+
+21. LC 34 — First and Last Position
+22. LC 153 — Find Minimum in Rotated Sorted Array
+23. LC 875 — Koko Eating Bananas
+24. LC 1011 — Capacity to Ship Packages
+25. LC 215 — Kth Largest Element
+26. LC 347 — Top K Frequent Elements
+27. LC 739 — Daily Temperatures
+28. LC 496 — Next Greater Element I
+29. LC 84 — Largest Rectangle in Histogram
+30. LC 907 — Sum of Subarray Minimums
+31. LC 268 — Missing Number
+32. LC 287 — Find the Duplicate Number
+33. LC 41 — First Missing Positive
+34. LC 442 — Find All Duplicates
+35. LC 448 — Find All Numbers Disappeared
+36. LC 918 — Maximum Sum Circular Subarray
+37. LC 152 — Maximum Product Subarray
+38. LC 1004 — Max Consecutive Ones III
+39. LC 424 — Longest Repeating Character Replacement
+40. LC 904 — Fruit Into Baskets
+
+### Tier 3
+
+41. LC 48 — Rotate Image
+42. LC 54 — Spiral Matrix
+43. LC 73 — Set Matrix Zeroes
+44. LC 240 — Search a 2D Matrix II
+45. LC 986 — Interval List Intersections
+46. LC 435 — Non-overlapping Intervals
+47. LC 452 — Minimum Number of Arrows
+48. LC 930 — Binary Subarrays With Sum
+49. LC 974 — Subarray Sums Divisible by K
+50. LC 862 — Shortest Subarray with Sum at Least K
+
+---
+
+# 🧩 How I Recommend You Study Each Pattern
+
+Don't simply do:
+
+> Problem → solution → next problem.
+
+Instead use this cycle:
+
+```text
+              ARRAY PROBLEM
+                    │
+                    ▼
+             Identify Pattern
+                    │
+       ┌────────────┴────────────┐
+       ▼                         ▼
+   Brute Force              Optimization
+       │                         │
+       ▼                         ▼
+   O(n²) / O(n³)          O(n) / O(n log n)
+                                 │
+                                 ▼
+                         Explain Trade-offs
+                                 │
+                                 ▼
+                         Code from Scratch
+                                 │
+                                 ▼
+                       Test Edge Cases
+```
+
+For **every problem**, write down:
+
+```text
+1. Pattern:
+2. Brute force:
+3. Optimal approach:
+4. Why it works:
+5. Time complexity:
+6. Space complexity:
+7. Edge cases:
+8. What clue tells me to use this pattern?
+```
+
+That last question is **extremely important for interviews**.
+
+---
+
+# 🚀 6-Week Array Preparation Plan
+
+### Week 1
+
+**Fundamentals + Hashing + Two Pointers**
+
+* 2 Sum
+* Frequency
+* Duplicate
+* 3Sum
+* 4Sum
+* Container
+* Move Zeroes
+* Sort Colors
+
+### Week 2
+
+**Sliding Window + Prefix Sum**
+
+* Longest substring
+* Minimum window
+* Minimum size subarray
+* Max consecutive ones
+* Subarray sum K
+* Contiguous array
+* Binary subarrays
+
+### Week 3
+
+**Binary Search + Sorting**
+
+* Basic binary search
+* First/last position
+* Rotated arrays
+* Search minimum
+* Koko
+* Ship packages
+* Split array
+
+### Week 4
+
+**Intervals + Greedy + Heap**
+
+* Merge intervals
+* Insert interval
+* Meeting rooms
+* Non-overlapping intervals
+* Jump Game
+* Gas Station
+* Kth largest
+* Top K
+
+### Week 5
+
+**Stack + Advanced Arrays**
+
+* Next greater
+* Daily temperatures
+* Histogram
+* Trapping rain water
+* Subarray minimums
+* First missing positive
+* Duplicate/missing number problems
+
+### Week 6
+
+**Mixed Microsoft-style practice**
+
+Don't study by pattern anymore.
+
+Instead:
+
+```text
+Problem
+   ↓
+You identify pattern yourself
+   ↓
+Code
+   ↓
+Explain
+   ↓
+Complexity
+   ↓
+Follow-up
+```
+
+Do **2–3 timed problems per day**.
+
+---
+
+## 🔥 Most important skill for Microsoft
+
+Don't memorize:
+
+> "LC 560 = Prefix Sum + HashMap."
+
+Instead train yourself to recognize:
+
+> **"I'm looking for a contiguous subarray whose sum equals K. Repeatedly computing every subarray is expensive. Prefix sums turn this into finding whether `prefix[i] - K` existed before, so HashMap."**
+
+That's the interview skill.
+
+If you can look at a new problem and quickly classify it as **Two Pointer / Sliding Window / Prefix Sum / HashMap / Binary Search / Monotonic Stack / Heap / Greedy**, your preparation becomes dramatically more effective.
