@@ -1,0 +1,22 @@
+
+
+242. Valid Anagram : 
+          -> Convert String into array of string.
+          -> Perform Sorting on this.
+          -> If after sorting both are equal then it is true: : It is valid anagram.
+
+----------------------------------------------------------------------------------------------------------------------
+125. Valid Palindrome :
+          Using TWO Pointer Approach:
+                -> Takes Two variable i and j 
+                -> Replace all the extra things using ::::: * s = s.toLowerCase().replaceAll("[^A-Za-z0-9]", "");
+                -> comparing if s.charAt(i) != s.charAt(j) then return false::: and i++ and j--
+                -> in last return the true
+
+------------------------------------------------------------------------------------------------------------------------
+58. Length of Last Word :
+          -> Go to the last of index
+          -> If last index is not a character then decreases by 1
+          -> Initially if len is 0 then go as it is.
+          -> once any character is found then perform the increments.
+          -> after that any space is found then return the lengthg.
